@@ -25,3 +25,4 @@ php flarum cache:clear
 - [Packagist](https://packagist.org/packages/bhasvic/manual-blog-authors)
 - [GitHub](https://github.com/bhasvic/manual-blog-authors)
 - [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
+# flarum-virtual-authors

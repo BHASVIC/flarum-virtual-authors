@@ -3,4 +3,20 @@ bhasvic-virtual-authors:
     settings:
       errored: Failed to load virtual authors from the server.
 
+      create_new: Create new virtual author
+
+    virtual_author_item:
+      edit: Edit virtual author
+
+    edit_modal:
+      title_edit: Edit virtual author
+      title_new: New virtual author
+
+      submit_edit: Save changes
+      submit_new: Create virtual author
+
+      fields:
+        name: Display name
+        description: Description (about author)
+
   forum:

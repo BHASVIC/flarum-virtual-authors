@@ -1,9 +1,12 @@
 import app from 'flarum/admin/app';
 
 import ExtensionPage from 'flarum/admin/components/ExtensionPage';
+import Button from 'flarum/common/components/Button';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 
 import VirtualAuthor from 'src/common/VirtualAuthor';
+import EditVirtualAuthorModal from '../components/EditVirtualAuthorModal';
+import VirtualAuthorItem from '../components/VirtualAuthorItem';
 
 export default class SettingsPage extends ExtensionPage {
   virtualAuthors: VirtualAuthor[] | null = null;
@@ -11,7 +14,7 @@ export default class SettingsPage extends ExtensionPage {
   errored: boolean = false;
 
   content() {
-    if (this.loading) {
+    if (this.loading || !this.virtualAuthors) {
       this.loadAllVirtualAuthors();
 
       return (
@@ -35,7 +38,18 @@ export default class SettingsPage extends ExtensionPage {
 
     return (
       <div className="ExtensionPage-settings">
-        <div className="container"></div>
+        <div className="container">
+          <div className="VirtualAuthors">
+            {this.virtualAuthors.map((virtualAuthor) => (
+              <VirtualAuthorItem virtualAuthor={virtualAuthor} />
+            ))}
+          </div>
+          <div className="VirtualAuthor-new">
+            <Button class="Button Button--primry" onclick={() => this.createVirtualAuthor()}>
+              {app.translator.trans('bhasvic-virtual-authors.admin.settings.create_new')}
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -50,5 +64,12 @@ export default class SettingsPage extends ExtensionPage {
       this.loading = false;
       m.redraw();
     }
+  }
+
+  createVirtualAuthor() {
+    app.modal.show(EditVirtualAuthorModal, {
+      type: 'new',
+      virtualAuthor: app.store.createRecord('virtualAuthors'),
+    });
   }
 }

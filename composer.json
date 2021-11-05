@@ -1,0 +1,40 @@
+{
+    "name": "bhasvic/virtual-authors",
+    "description": "Specify virtual authors for your discussions.",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^v1.1.1"
+    },
+    "authors": [
+        {
+            "name": "David Wheatley",
+            "email": "hi@davwheat.dev",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BHASVIC\\ManualBlogAuthors\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BHASVIC\\ManualBlogAuthors\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Virtual Authors",
+            "category": "features",
+            "icon": {
+                "name": "fas fa-ghost",
+                "backgroundColor": "#e52434",
+                "color": "#fff"
+            }
+        }
+    }
+}

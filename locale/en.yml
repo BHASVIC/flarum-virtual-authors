@@ -1,0 +1,6 @@
+bhasvic-virtual-authors:
+  admin:
+    settings:
+      errored: Failed to load virtual authors from the server.
+
+  forum:

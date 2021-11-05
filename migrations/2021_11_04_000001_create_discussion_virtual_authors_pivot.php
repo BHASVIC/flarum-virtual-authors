@@ -22,12 +22,12 @@ return [
 
                 $table->string('credit');
 
-                $table->foreign('discussion_id', 'flarum_discussion_virtual_author_va_id_d_id_index')
+                $table->foreign('discussion_id', 'discussion_virtual_author_va_id_d_id_index')
                     ->references('id')
                     ->on('discussions')
                     ->onDelete('cascade');
 
-                $table->foreign('virtual_author_id', 'flarum_discussion_virtual_author_d_id_va_id_index')
+                $table->foreign('virtual_author_id', 'discussion_virtual_author_d_id_va_id_index')
                     ->references('id')
                     ->on('virtual_authors')
                     ->onDelete('cascade');

@@ -10,9 +10,9 @@ return [
         }
 
         $schema->create(
-            'discussion_virtual_author',
+            'virtual_authors',
             function (Blueprint $table) {
-                $table->increments('id')->primary();
+                $table->increments('id');
 
                 $table->string('displayName');
                 $table->longText('description');
@@ -23,6 +23,6 @@ return [
         );
     },
     'down' => function (Builder $schema) {
-        $schema->dropIfExists('discussion_virtual_author');
+        $schema->dropIfExists('virtual_authors');
     }
 ];

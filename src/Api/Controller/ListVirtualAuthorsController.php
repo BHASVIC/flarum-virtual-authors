@@ -1,15 +1,15 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Api\Controller;
+namespace Davwheat\ManualBlogAuthors\Api\Controller;
 
 use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\RequestUtil;
 use Flarum\Http\UrlGenerator;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
-use BHASVIC\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
-use BHASVIC\ManualBlogAuthors\VirtualAuthor;
-use BHASVIC\ManualBlogAuthors\VirtualAuthorRepository;
+use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
 use Illuminate\Support\Arr;
 
 class ListVirtualAuthorsController extends AbstractListController

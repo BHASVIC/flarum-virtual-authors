@@ -1,6 +1,6 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Api\Controller;
+namespace Davwheat\ManualBlogAuthors\Api\Controller;
 
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Http\RequestUtil;
@@ -8,8 +8,8 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
-use BHASVIC\ManualBlogAuthors\Command\EditVirtualAuthor;
-use BHASVIC\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\ManualBlogAuthors\Command\EditVirtualAuthor;
+use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
 
 class UpdateVirtualAuthorController extends AbstractShowController
 {
@@ -40,7 +40,6 @@ class UpdateVirtualAuthorController extends AbstractShowController
         // See https://docs.flarum.org/extend/api.html#api-endpoints for more information.
 
         $actor = RequestUtil::getActor($request);
-        $actor->assertAdmin();
 
         $modelId = Arr::get($request->getQueryParams(), 'id');
         $data = Arr::get($request->getParsedBody(), 'data', []);

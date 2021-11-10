@@ -1,10 +1,10 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Command;
+namespace Davwheat\ManualBlogAuthors\Command;
 
 use Illuminate\Support\Arr;
-use BHASVIC\ManualBlogAuthors\VirtualAuthorRepository;
-use BHASVIC\ManualBlogAuthors\VirtualAuthorValidator;
+use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
+use Davwheat\ManualBlogAuthors\VirtualAuthorValidator;
 
 class EditVirtualAuthorHandler
 {
@@ -29,9 +29,7 @@ class EditVirtualAuthorHandler
         $actor = $command->actor;
         $data = $command->data;
 
-        $actor->assertCan('...');
-
-        // ...
+        $actor->assertCan('administrateVirtualAuthors');
 
         return $model;
     }

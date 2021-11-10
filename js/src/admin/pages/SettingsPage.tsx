@@ -30,7 +30,7 @@ export default class SettingsPage extends ExtensionPage {
       return (
         <div className="ExtensionPage-settings">
           <div className="container">
-            <p>{app.translator.trans('bhasvic-virtual-authors.admin.settings.errored')}</p>
+            <p>{app.translator.trans('davwheat-virtual-authors.admin.settings.errored')}</p>
           </div>
         </div>
       );
@@ -46,7 +46,7 @@ export default class SettingsPage extends ExtensionPage {
           </div>
           <div className="VirtualAuthor-new">
             <Button class="Button Button--primry" onclick={() => this.createVirtualAuthor()}>
-              {app.translator.trans('bhasvic-virtual-authors.admin.settings.create_new')}
+              {app.translator.trans('davwheat-virtual-authors.admin.settings.create_new')}
             </Button>
           </div>
         </div>

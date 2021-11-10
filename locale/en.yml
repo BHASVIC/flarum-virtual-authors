@@ -1,5 +1,8 @@
-bhasvic-virtual-authors:
+davwheat-virtual-authors:
   admin:
+    permissions:
+      set_virtual_authors: Add and remove discussion virtual authors
+
     settings:
       errored: Failed to load virtual authors from the server.
 

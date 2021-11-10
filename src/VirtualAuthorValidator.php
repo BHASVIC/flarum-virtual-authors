@@ -1,6 +1,6 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors;
+namespace Davwheat\ManualBlogAuthors;
 
 use Flarum\Foundation\AbstractValidator;
 

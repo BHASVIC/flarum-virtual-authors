@@ -1,8 +1,8 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Access;
+namespace Davwheat\ManualBlogAuthors\Access;
 
-use BHASVIC\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\ManualBlogAuthors\VirtualAuthor;
 use Flarum\User\Access\AbstractPolicy;
 use Flarum\User\User;
 

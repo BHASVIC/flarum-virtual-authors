@@ -32,7 +32,7 @@ return [
                     ->on('virtual_authors')
                     ->onDelete('cascade');
 
-                $table->index(['discussion_id', 'virtual_author_id']);
+                $table->index(['discussion_id', 'virtual_author_id'], 'discussion_virtual_author_index');
             }
         );
     },

@@ -1,9 +1,9 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Api\Serializer;
+namespace Davwheat\ManualBlogAuthors\Api\Serializer;
 
 use Flarum\Api\Serializer\AbstractSerializer;
-use BHASVIC\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\ManualBlogAuthors\VirtualAuthor;
 use InvalidArgumentException;
 
 class VirtualAuthorSerializer extends AbstractSerializer

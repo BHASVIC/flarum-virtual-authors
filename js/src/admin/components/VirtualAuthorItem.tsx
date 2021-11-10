@@ -14,7 +14,7 @@ export default class VirtualAuthorItem extends Component<IVirtualAuthorItemProps
       <div className="VirtualAuthorItem">
         <div className="VirtualAuthorItem-name">{this.attrs.virtualAuthor.displayName()}</div>
         <Button className="VirtualAuthorItem-editButton" onclick={() => this.edit()}>
-          {app.translator.trans('bhasvic-virtual-authors.admin.virtual_author_item.edit')}
+          {app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.edit')}
         </Button>
       </div>
     );

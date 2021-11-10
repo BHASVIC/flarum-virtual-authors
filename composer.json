@@ -1,5 +1,5 @@
 {
-    "name": "bhasvic/virtual-authors",
+    "name": "davwheat/virtual-authors",
     "description": "Specify virtual authors for your discussions.",
     "keywords": [
         "flarum"
@@ -18,12 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "BHASVIC\\ManualBlogAuthors\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "BHASVIC\\ManualBlogAuthors\\Tests\\": "tests/"
+            "Davwheat\\ManualBlogAuthors\\": "src/"
         }
     },
     "extra": {

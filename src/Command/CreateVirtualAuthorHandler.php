@@ -1,10 +1,10 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Command;
+namespace Davwheat\ManualBlogAuthors\Command;
 
 use Illuminate\Support\Arr;
-use BHASVIC\ManualBlogAuthors\VirtualAuthorRepository;
-use BHASVIC\ManualBlogAuthors\VirtualAuthorValidator;
+use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
+use Davwheat\ManualBlogAuthors\VirtualAuthorValidator;
 
 class CreateVirtualAuthorHandler
 {
@@ -21,7 +21,7 @@ class CreateVirtualAuthorHandler
     public function __construct(VirtualAuthorRepository $repository, VirtualAuthorValidator $validator)
     {
         $this->repository = $repository;
-		$this->validator = $validator;
+        $this->validator = $validator;
     }
 
     public function handle(CreateVirtualAuthor $command)
@@ -29,9 +29,7 @@ class CreateVirtualAuthorHandler
         $actor = $command->actor;
         $data = $command->data;
 
-        $actor->assertCan('...');
-
-        // ...
+        $actor->assertCan('administrateVirtualAuthors');
 
         return $model;
     }

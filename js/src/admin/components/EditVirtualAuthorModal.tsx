@@ -25,7 +25,7 @@ export default class EditVirtualAuthorModal extends Modal {
   }
 
   title() {
-    return app.translator.trans(`bhasvic-virtual-authors.admin.edit_modal.title_${this.attrs.type}`);
+    return app.translator.trans(`davwheat-virtual-authors.admin.edit_modal.title_${this.attrs.type}`);
   }
 
   content() {
@@ -38,7 +38,7 @@ export default class EditVirtualAuthorModal extends Modal {
     items.add(
       'displayName',
       <div class="Form-group">
-        <label>{app.translator.trans('bhasvic-virtual-authors.admin.edit_modal.fields.name')}</label>
+        <label>{app.translator.trans('davwheat-virtual-authors.admin.edit_modal.fields.name')}</label>
         <input
           type="text"
           value={this.modelState.displayName}
@@ -51,7 +51,7 @@ export default class EditVirtualAuthorModal extends Modal {
     items.add(
       'description',
       <div class="Form-group">
-        <label>{app.translator.trans('bhasvic-virtual-authors.admin.edit_modal.fields.description')}</label>
+        <label>{app.translator.trans('davwheat-virtual-authors.admin.edit_modal.fields.description')}</label>
         <textarea
           value={this.modelState.description}
           oninput={(e: InputEvent) => (this.modelState.description = (e.currentTarget as HTMLInputElement).value)}
@@ -63,7 +63,7 @@ export default class EditVirtualAuthorModal extends Modal {
     items.add(
       'submit',
       <Button class="Button Button--primary" type="submit">
-        {app.translator.trans(`bhasvic-virtual-authors.admin.edit_modal.fields.submit_${this.attrs.type}`)}
+        {app.translator.trans(`davwheat-virtual-authors.admin.edit_modal.fields.submit_${this.attrs.type}`)}
       </Button>,
       -10
     );

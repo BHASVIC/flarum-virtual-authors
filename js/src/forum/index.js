@@ -1,5 +1,5 @@
 import addModel from '../common/addModel';
 
-app.initializers.add('bhasvic/manual-blog-authors', () => {
+app.initializers.add('davwheat/manual-blog-authors', () => {
   addModel();
 });

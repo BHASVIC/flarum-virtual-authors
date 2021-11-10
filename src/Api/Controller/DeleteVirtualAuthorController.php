@@ -1,14 +1,14 @@
 <?php
 
-namespace BHASVIC\ManualBlogAuthors\Api\Controller;
+namespace Davwheat\ManualBlogAuthors\Api\Controller;
 
 use Flarum\Api\Controller\AbstractDeleteController;
 use Flarum\Http\RequestUtil;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
-use BHASVIC\ManualBlogAuthors\Command\DeleteVirtualAuthor;
-use BHASVIC\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\ManualBlogAuthors\Command\DeleteVirtualAuthor;
+use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
 
 class DeleteVirtualAuthorController extends AbstractDeleteController
 {
@@ -39,7 +39,6 @@ class DeleteVirtualAuthorController extends AbstractDeleteController
         // See https://docs.flarum.org/extend/api.html#api-endpoints for more information.
 
         $actor = RequestUtil::getActor($request);
-        $actor->assertAdmin();
 
         $modelId = Arr::get($request->getQueryParams(), 'id');
         $input = $request->getParsedBody();

@@ -2,9 +2,11 @@
 
 namespace Davwheat\ManualBlogAuthors\Command;
 
-use Illuminate\Support\Arr;
+use Davwheat\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\ManualBlogAuthors\Event\CreatingVirtualAuthor;
 use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
 use Davwheat\ManualBlogAuthors\VirtualAuthorValidator;
+use Illuminate\Support\Arr;
 
 class CreateVirtualAuthorHandler
 {
@@ -30,6 +32,17 @@ class CreateVirtualAuthorHandler
         $data = $command->data;
 
         $actor->assertCan('administrateVirtualAuthors');
+
+        $model = VirtualAuthor::build(
+            Arr::get($data, 'attributes.displayName'),
+            Arr::get($data, 'attributes.description'),
+        );
+
+        event(new CreatingVirtualAuthor($model, $actor, $data));
+
+        $this->validator->assertValid($model->getAttributes());
+
+        $model->save();
 
         return $model;
     }

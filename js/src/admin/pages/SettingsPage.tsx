@@ -45,7 +45,7 @@ export default class SettingsPage extends ExtensionPage {
             ))}
           </div>
           <div className="VirtualAuthor-new">
-            <Button class="Button Button--primry" onclick={() => this.createVirtualAuthor()}>
+            <Button class="Button Button--primary" onclick={() => this.createVirtualAuthor()}>
               {app.translator.trans('davwheat-virtual-authors.admin.settings.create_new')}
             </Button>
           </div>

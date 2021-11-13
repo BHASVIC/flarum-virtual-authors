@@ -14,6 +14,7 @@ namespace Davwheat\ManualBlogAuthors;
 use Flarum\Database\AbstractModel;
 use Flarum\Discussion\Discussion;
 use Flarum\Extend;
+use Tobscure\JsonApi\Relationship;
 
 return [
     (new Extend\Frontend('forum'))
@@ -47,10 +48,6 @@ return [
         ->attributes(function (\Flarum\Api\Serializer\DiscussionSerializer $serializer, Discussion $model, array $attributes) {
             $attributes['canSetVirtualAuthors'] = $serializer->getActor()->can('discussion.setVirtualAuthors', $model);
             return $attributes;
-        })
-        ->relationship('virtualAuthors', function (\Flarum\Api\Serializer\DiscussionSerializer $serializer, Discussion $model) {
-            // return $model->belongsToMany(VirtualAuthor::class, 'discussion_virtual_author', 'discussion_id', 'virtual_author_id')
-            //     ->withPivot('credit');
         }),
 
     (new Extend\ApiController(\Flarum\Api\Controller\ShowDiscussionController::class))

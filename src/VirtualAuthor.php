@@ -27,4 +27,22 @@ class VirtualAuthor extends AbstractModel
         'displayName' => '',
         'description' => '',
     ];
+
+
+    public static function build($displayName, $description)
+    {
+        $model = new static;
+
+        $model->displayName = $displayName;
+        $model->description = $description;
+
+        dd($model);
+
+        return $model;
+    }
+
+    public function discussions()
+    {
+        return $this->belongsToMany(Discussion::class);
+    }
 }

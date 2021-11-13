@@ -2,7 +2,7 @@ import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
 import Modal from 'flarum/common/components/Modal';
 import ItemList from 'flarum/common/utils/ItemList';
-import VirtualAuthor from '../../common/VirtualAuthor';
+import type VirtualAuthor from '../../common/VirtualAuthor';
 
 interface IEditModalAttrs {
   virtualAuthor: VirtualAuthor;
@@ -17,11 +17,15 @@ export default class EditVirtualAuthorModal extends Modal {
     description: string;
   };
 
-  oninit() {
+  oninit(vnode) {
+    super.oninit(vnode);
+
     const virtualAuthor = this.attrs.virtualAuthor;
 
-    this.modelState.displayName = virtualAuthor.displayName();
-    this.modelState.description = virtualAuthor.description();
+    this.modelState = {
+      displayName: virtualAuthor.displayName(),
+      description: virtualAuthor.description(),
+    };
   }
 
   title() {
@@ -29,7 +33,7 @@ export default class EditVirtualAuthorModal extends Modal {
   }
 
   content() {
-    return <fieldset>{this.fields().toArray()}</fieldset>;
+    return <div class="Modal-body">{this.fields().toArray()}</div>;
   }
 
   fields() {
@@ -40,6 +44,7 @@ export default class EditVirtualAuthorModal extends Modal {
       <div class="Form-group">
         <label>{app.translator.trans('davwheat-virtual-authors.admin.edit_modal.fields.name')}</label>
         <input
+          class="FormControl"
           type="text"
           value={this.modelState.displayName}
           oninput={(e: InputEvent) => (this.modelState.displayName = (e.currentTarget as HTMLInputElement).value)}
@@ -53,6 +58,7 @@ export default class EditVirtualAuthorModal extends Modal {
       <div class="Form-group">
         <label>{app.translator.trans('davwheat-virtual-authors.admin.edit_modal.fields.description')}</label>
         <textarea
+          class="FormControl"
           value={this.modelState.description}
           oninput={(e: InputEvent) => (this.modelState.description = (e.currentTarget as HTMLInputElement).value)}
         />
@@ -71,7 +77,8 @@ export default class EditVirtualAuthorModal extends Modal {
     return items;
   }
 
-  onsubmit() {
+  onsubmit(e: SubmitEvent) {
+    e.preventDefault();
     this.attrs.virtualAuthor.save(this.modelState);
   }
 }

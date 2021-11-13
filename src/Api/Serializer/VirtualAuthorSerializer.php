@@ -30,6 +30,7 @@ class VirtualAuthorSerializer extends AbstractSerializer
         $attributes = [
             'displayName' => $model->displayName,
             'description' => $model->description,
+            'discussionCount' => $model->discussionCount(),
         ];
 
         if ($model->pivot) {

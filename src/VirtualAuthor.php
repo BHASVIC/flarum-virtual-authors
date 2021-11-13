@@ -4,6 +4,7 @@ namespace Davwheat\ManualBlogAuthors;
 
 use Flarum\Database\AbstractModel;
 use Flarum\Database\ScopeVisibilityTrait;
+use Flarum\Discussion\Discussion;
 use Flarum\Foundation\EventGeneratorTrait;
 
 /**
@@ -41,6 +42,11 @@ class VirtualAuthor extends AbstractModel
 
     public function discussions()
     {
-        return $this->belongsToMany(Discussion::class);
+        return $this->belongsToMany(Discussion::class, 'discussion_virtual_author', 'virtual_author_id', 'discussion_id');
+    }
+
+    public function discussionCount()
+    {
+        return $this->discussions()->count();
     }
 }

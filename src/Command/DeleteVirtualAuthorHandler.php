@@ -2,8 +2,9 @@
 
 namespace Davwheat\ManualBlogAuthors\Command;
 
-use Illuminate\Support\Arr;
+use Davwheat\ManualBlogAuthors\Event\DeletingVirtualAuthor;
 use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class DeleteVirtualAuthorHandler
 {
@@ -12,9 +13,15 @@ class DeleteVirtualAuthorHandler
      */
     protected $repository;
 
-    public function __construct(VirtualAuthorRepository $repository)
+    /**
+     * @var Dispatcher
+     */
+    protected $events;
+
+    public function __construct(VirtualAuthorRepository $repository, Dispatcher $dispatcher)
     {
         $this->repository = $repository;
+        $this->events = $dispatcher;
     }
 
     public function handle(DeleteVirtualAuthor $command)
@@ -23,6 +30,12 @@ class DeleteVirtualAuthorHandler
         $data = $command->data;
 
         $actor->assertCan('administrateVirtualAuthors');
+
+        $model = $this->repository->findOrFail($command->modelId);
+
+        $this->events->dispatch(new DeletingVirtualAuthor($model, $actor, $data));
+
+        $model->deleteOrFail();
 
         return $model;
     }

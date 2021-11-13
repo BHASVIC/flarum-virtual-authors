@@ -9,7 +9,11 @@ davwheat-virtual-authors:
       create_new: Create new virtual author
 
     virtual_author_item:
+      name: Display name
+      description: Description
+
       edit: Edit virtual author
+      delete_confirmation: Delete virtual author?
 
     edit_modal:
       title_edit: Edit virtual author

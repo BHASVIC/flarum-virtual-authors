@@ -27,10 +27,15 @@ class VirtualAuthorSerializer extends AbstractSerializer
             );
         }
 
-        // See https://docs.flarum.org/extend/api.html#serializers for more information.
-
-        return [
-            // ...
+        $attributes = [
+            'displayName' => $model->displayName,
+            'description' => $model->description,
         ];
+
+        if ($model->pivot) {
+            $attributes['credit'] = $model->pivot->credit;
+        }
+
+        return $attributes;
     }
 }

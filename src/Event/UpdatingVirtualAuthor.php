@@ -1,0 +1,36 @@
+<?php
+
+namespace Davwheat\ManualBlogAuthors\Event;
+
+use Davwheat\ManualBlogAuthors\VirtualAuthor;
+use Flarum\User\User;
+
+class UpdatingVirtualAuthor
+{
+    /**
+     * @var Tag
+     */
+    public $tag;
+
+    /**
+     * @var User
+     */
+    public $actor;
+
+    /**
+     * @var array
+     */
+    public $data;
+
+    /**
+     * @param VirtualAuthor $virtualAuthor
+     * @param User $actor
+     * @param array $data
+     */
+    public function __construct(VirtualAuthor $virtualAuthor, User $actor, array $data)
+    {
+        $this->virtualAuthor = $virtualAuthor;
+        $this->actor = $actor;
+        $this->data = $data;
+    }
+}

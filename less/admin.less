@@ -5,4 +5,27 @@
   border: 1px solid @muted-more-color;
 
   margin-bottom: 8px;
+
+  display: flex;
+
+  &-attribute {
+    & + & {
+      margin-left: 16px;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    :not([aria-describedby]) {
+      font-weight: bold;
+    }
+  }
+
+  &-editButton {
+    margin-left: auto;
+  }
+
+  &-deleteButton {
+    margin-left: 4px;
+  }
 }

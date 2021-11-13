@@ -36,8 +36,6 @@ class VirtualAuthor extends AbstractModel
         $model->displayName = $displayName;
         $model->description = $description;
 
-        dd($model);
-
         return $model;
     }
 

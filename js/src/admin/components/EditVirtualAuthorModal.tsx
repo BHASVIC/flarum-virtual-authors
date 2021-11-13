@@ -1,5 +1,6 @@
 import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import Modal from 'flarum/common/components/Modal';
 import ItemList from 'flarum/common/utils/ItemList';
 import type VirtualAuthor from '../../common/VirtualAuthor';
@@ -7,6 +8,7 @@ import type VirtualAuthor from '../../common/VirtualAuthor';
 interface IEditModalAttrs {
   virtualAuthor: VirtualAuthor;
   type: 'edit' | 'new';
+  onhide: () => void;
 }
 
 export default class EditVirtualAuthorModal extends Modal {
@@ -44,6 +46,7 @@ export default class EditVirtualAuthorModal extends Modal {
       <div class="Form-group">
         <label>{app.translator.trans('davwheat-virtual-authors.admin.edit_modal.fields.name')}</label>
         <input
+          disabled={this.loading}
           class="FormControl"
           type="text"
           value={this.modelState.displayName}
@@ -58,6 +61,7 @@ export default class EditVirtualAuthorModal extends Modal {
       <div class="Form-group">
         <label>{app.translator.trans('davwheat-virtual-authors.admin.edit_modal.fields.description')}</label>
         <textarea
+          disabled={this.loading}
           class="FormControl"
           value={this.modelState.description}
           oninput={(e: InputEvent) => (this.modelState.description = (e.currentTarget as HTMLInputElement).value)}
@@ -68,8 +72,9 @@ export default class EditVirtualAuthorModal extends Modal {
 
     items.add(
       'submit',
-      <Button class="Button Button--primary" type="submit">
+      <Button class="Button Button--primary" type="submit" disabled={this.loading}>
         {app.translator.trans(`davwheat-virtual-authors.admin.edit_modal.fields.submit_${this.attrs.type}`)}
+        {this.loading && <LoadingIndicator display="inline" size="small" />}
       </Button>,
       -10
     );
@@ -77,8 +82,18 @@ export default class EditVirtualAuthorModal extends Modal {
     return items;
   }
 
-  onsubmit(e: SubmitEvent) {
-    e.preventDefault();
-    this.attrs.virtualAuthor.save(this.modelState);
+  async onsubmit() {
+    this.loading = true;
+    m.redraw();
+
+    try {
+      const result = await this.attrs.virtualAuthor.save(this.modelState);
+      app.store.pushPayload(result);
+      this.attrs.onhide();
+      this.hide();
+    } catch (e) {
+      this.onerror(e);
+      console.error(e);
+    }
   }
 }

@@ -41,7 +41,7 @@ export default class SettingsPage extends ExtensionPage {
         <div className="container">
           <div className="VirtualAuthors">
             {this.virtualAuthors.map((virtualAuthor) => (
-              <VirtualAuthorItem virtualAuthor={virtualAuthor} />
+              <VirtualAuthorItem virtualAuthor={virtualAuthor} invalidateData={() => this.loadAllVirtualAuthors()} />
             ))}
           </div>
           <div className="VirtualAuthor-new">
@@ -55,6 +55,8 @@ export default class SettingsPage extends ExtensionPage {
   }
 
   async loadAllVirtualAuthors() {
+    this.loading = true;
+
     try {
       this.virtualAuthors = await app.store.find('virtualAuthors');
       this.loading = false;
@@ -70,6 +72,7 @@ export default class SettingsPage extends ExtensionPage {
     app.modal.show(EditVirtualAuthorModal, {
       type: 'new',
       virtualAuthor: app.store.createRecord('virtualAuthors'),
+      onhide: () => this.loadAllVirtualAuthors(),
     });
   }
 }

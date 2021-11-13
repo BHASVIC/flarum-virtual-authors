@@ -11,10 +11,10 @@
 
 namespace Davwheat\ManualBlogAuthors;
 
+use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
 use Flarum\Database\AbstractModel;
 use Flarum\Discussion\Discussion;
 use Flarum\Extend;
-use Tobscure\JsonApi\Relationship;
 
 return [
     (new Extend\Frontend('forum'))
@@ -41,16 +41,17 @@ return [
     (new Extend\Model(Discussion::class))
         ->relationship('virtualAuthors', function (AbstractModel $model) {
             return $model->belongsToMany(VirtualAuthor::class, 'discussion_virtual_author', 'discussion_id', 'virtual_author_id')
-                ->withPivot('credit');
+                ->withPivot(['credit'])->withTimestamps();
         }),
 
     (new Extend\ApiSerializer(\Flarum\Api\Serializer\DiscussionSerializer::class))
-        ->attributes(function (\Flarum\Api\Serializer\DiscussionSerializer $serializer, Discussion $model, array $attributes) {
-            $attributes['canSetVirtualAuthors'] = $serializer->getActor()->can('discussion.setVirtualAuthors', $model);
-            return $attributes;
-        }),
+        ->hasMany('virtualAuthors', VirtualAuthorSerializer::class),
 
     (new Extend\ApiController(\Flarum\Api\Controller\ShowDiscussionController::class))
+        ->addInclude('virtualAuthors')
+        ->load('virtualAuthors'),
+
+    (new Extend\ApiController(\Flarum\Api\Controller\ListDiscussionsController::class))
         ->addInclude('virtualAuthors')
         ->load('virtualAuthors'),
 

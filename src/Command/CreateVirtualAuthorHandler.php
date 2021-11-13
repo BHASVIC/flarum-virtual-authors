@@ -6,6 +6,7 @@ use Davwheat\ManualBlogAuthors\VirtualAuthor;
 use Davwheat\ManualBlogAuthors\Event\CreatingVirtualAuthor;
 use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
 use Davwheat\ManualBlogAuthors\VirtualAuthorValidator;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
 
 class CreateVirtualAuthorHandler
@@ -20,10 +21,16 @@ class CreateVirtualAuthorHandler
      */
     protected $validator;
 
-    public function __construct(VirtualAuthorRepository $repository, VirtualAuthorValidator $validator)
+    /**
+     * @var Dispatcher
+     */
+    protected $events;
+
+    public function __construct(VirtualAuthorRepository $repository, VirtualAuthorValidator $validator, Dispatcher $dispatcher)
     {
         $this->repository = $repository;
         $this->validator = $validator;
+        $this->events = $dispatcher;
     }
 
     public function handle(CreateVirtualAuthor $command)
@@ -38,9 +45,11 @@ class CreateVirtualAuthorHandler
             Arr::get($data, 'attributes.description'),
         );
 
-        event(new CreatingVirtualAuthor($model, $actor, $data));
+        $this->events->dispatch(new CreatingVirtualAuthor($model, $actor, $data));
 
         $this->validator->assertValid($model->getAttributes());
+
+        $model->updateTimestamps();
 
         $model->save();
 

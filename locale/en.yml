@@ -15,6 +15,7 @@ davwheat-virtual-authors:
       edit: Edit virtual author
       delete_confirmation: Delete virtual author?
 
+  lib:
     edit_modal:
       title_edit: Edit virtual author
       title_new: New virtual author
@@ -27,3 +28,16 @@ davwheat-virtual-authors:
         description: Description (about author)
 
   forum:
+    discussion_controls:
+      set_virtual_authors: Set virtual authors
+
+    set_modal:
+      title: Set virtual authors
+      description: Add and remove virual authors, and optionally provide credit information for each.
+
+      name: Display name
+      credit: Credit
+
+      delete_confirmation: Remove virtual author from discussion?
+
+      save: Save changes

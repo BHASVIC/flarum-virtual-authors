@@ -37,8 +37,6 @@ class UpdateVirtualAuthorController extends AbstractShowController
      */
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        // See https://docs.flarum.org/extend/api.html#api-endpoints for more information.
-
         $actor = RequestUtil::getActor($request);
 
         $modelId = Arr::get($request->getQueryParams(), 'id');

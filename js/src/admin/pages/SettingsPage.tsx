@@ -4,8 +4,8 @@ import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import Button from 'flarum/common/components/Button';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 
-import VirtualAuthor from 'src/common/VirtualAuthor';
-import EditVirtualAuthorModal from '../components/EditVirtualAuthorModal';
+import VirtualAuthor from '../../common/VirtualAuthor';
+import EditVirtualAuthorModal from '../../common/components/EditVirtualAuthorModal';
 import VirtualAuthorItem from '../components/VirtualAuthorItem';
 
 export default class SettingsPage extends ExtensionPage {

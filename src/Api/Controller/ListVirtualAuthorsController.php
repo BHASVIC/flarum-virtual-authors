@@ -57,10 +57,10 @@ class ListVirtualAuthorsController extends AbstractListController
         // ...
         $query = $this->virtualAuthors->query();
 
-        if (Arr::has($filters, 'name')) {
+        if (Arr::has($filters, 'displayName')) {
             $actor->assertAdmin();
 
-            $query = $query->where('name', 'like', $filters['name'] . '%');
+            $query = $query->where('displayName', 'like', $filters['displayNames'] . '%');
         }
 
         $results = $query->get();

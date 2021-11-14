@@ -4,7 +4,7 @@ import Button from 'flarum/common/components/Button';
 import icon from 'flarum/common/helpers/icon';
 import extractText from 'flarum/common/utils/extractText';
 import VirtualAuthor from '../../common/VirtualAuthor';
-import EditVirtualAuthorModal from './EditVirtualAuthorModal';
+import EditVirtualAuthorModal from '../../common/components/EditVirtualAuthorModal';
 
 interface IVirtualAuthorItemProps {
   virtualAuthor: VirtualAuthor;

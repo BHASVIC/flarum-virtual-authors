@@ -1,6 +1,6 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Api\Controller;
+namespace Davwheat\VirtualAuthors\Api\Controller;
 
 use Flarum\Api\Controller\AbstractCreateController;
 use Flarum\Http\RequestUtil;
@@ -8,8 +8,8 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
-use Davwheat\ManualBlogAuthors\Command\CreateVirtualAuthor;
-use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\VirtualAuthors\Command\CreateVirtualAuthor;
+use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
 
 class CreateVirtualAuthorController extends AbstractCreateController
 {

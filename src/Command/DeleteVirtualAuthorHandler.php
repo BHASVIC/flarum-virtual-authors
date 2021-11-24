@@ -1,9 +1,9 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Command;
+namespace Davwheat\VirtualAuthors\Command;
 
-use Davwheat\ManualBlogAuthors\Event\DeletingVirtualAuthor;
-use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
+use Davwheat\VirtualAuthors\Event\DeletingVirtualAuthor;
+use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class DeleteVirtualAuthorHandler

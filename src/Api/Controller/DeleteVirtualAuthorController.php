@@ -1,14 +1,14 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Api\Controller;
+namespace Davwheat\VirtualAuthors\Api\Controller;
 
 use Flarum\Api\Controller\AbstractDeleteController;
 use Flarum\Http\RequestUtil;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
-use Davwheat\ManualBlogAuthors\Command\DeleteVirtualAuthor;
-use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\VirtualAuthors\Command\DeleteVirtualAuthor;
+use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
 
 class DeleteVirtualAuthorController extends AbstractDeleteController
 {

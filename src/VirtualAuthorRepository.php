@@ -1,10 +1,10 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors;
+namespace Davwheat\VirtualAuthors;
 
 use Flarum\User\User;
 use Illuminate\Database\Eloquent\Builder;
-use Davwheat\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\VirtualAuthors\VirtualAuthor;
 
 class VirtualAuthorRepository
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Event;
+namespace Davwheat\VirtualAuthors\Event;
 
-use Davwheat\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\VirtualAuthors\VirtualAuthor;
 use Flarum\User\User;
 
 class DeletingVirtualAuthor

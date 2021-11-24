@@ -1,6 +1,6 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Access;
+namespace Davwheat\VirtualAuthors\Access;
 
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\Tags\Tag;

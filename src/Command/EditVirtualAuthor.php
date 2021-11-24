@@ -1,6 +1,6 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Command;
+namespace Davwheat\VirtualAuthors\Command;
 
 use Flarum\User\User;
 

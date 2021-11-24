@@ -1,11 +1,11 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Command;
+namespace Davwheat\VirtualAuthors\Command;
 
-use Davwheat\ManualBlogAuthors\VirtualAuthor;
-use Davwheat\ManualBlogAuthors\Event\CreatingVirtualAuthor;
-use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
-use Davwheat\ManualBlogAuthors\VirtualAuthorValidator;
+use Davwheat\VirtualAuthors\VirtualAuthor;
+use Davwheat\VirtualAuthors\Event\CreatingVirtualAuthor;
+use Davwheat\VirtualAuthors\VirtualAuthorRepository;
+use Davwheat\VirtualAuthors\VirtualAuthorValidator;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
 

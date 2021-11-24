@@ -1,13 +1,13 @@
 <?php
 
-namespace Davwheat\ManualBlogAuthors\Command;
+namespace Davwheat\VirtualAuthors\Command;
 
 use Carbon\Carbon;
-use Davwheat\ManualBlogAuthors\Event\UpdatingVirtualAuthor;
-use Davwheat\ManualBlogAuthors\VirtualAuthor;
+use Davwheat\VirtualAuthors\Event\UpdatingVirtualAuthor;
+use Davwheat\VirtualAuthors\VirtualAuthor;
 use Illuminate\Support\Arr;
-use Davwheat\ManualBlogAuthors\VirtualAuthorRepository;
-use Davwheat\ManualBlogAuthors\VirtualAuthorValidator;
+use Davwheat\VirtualAuthors\VirtualAuthorRepository;
+use Davwheat\VirtualAuthors\VirtualAuthorValidator;
 
 class EditVirtualAuthorHandler
 {

@@ -18,7 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Davwheat\\ManualBlogAuthors\\": "src/"
+            "Davwheat\\VirtualAuthors\\": "src/"
         }
     },
     "extra": {

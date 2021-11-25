@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of davwheat/manual-blog-authors.
+ * This file is part of davwheat/virtual-authors.
  *
  * Copyright (c) 2021 David Wheatley.
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Davwheat\ManualBlogAuthors;
+namespace Davwheat\VirtualAuthors;
 
-use Davwheat\ManualBlogAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
 use Flarum\Database\AbstractModel;
 use Flarum\Discussion\Discussion;
 use Flarum\Extend;

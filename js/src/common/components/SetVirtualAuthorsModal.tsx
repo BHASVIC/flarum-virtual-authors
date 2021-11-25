@@ -9,6 +9,7 @@ import type Discussion from 'flarum/common/models/Discussion';
 import type VirtualAuthor from '../../common/VirtualAuthor';
 import type Mithril from 'mithril';
 import Button from 'flarum/common/components/Button';
+import Fuse from 'fuse.js';
 
 interface ISetModalAttrs {
   discussion: Discussion & { virtualAuthors(): VirtualAuthor[] };
@@ -28,6 +29,17 @@ export default class SetVirtualAuthorsModal extends Modal {
   selectedVirtualAuthors: ISelectedVirtualAuthorState[] = [];
 
   filterString: string = '';
+
+  get filteredVirtualAuthors(): VirtualAuthor[] {
+    if (!this.filterString) return this.allVirtualAuthors;
+    if (!this.allVirtualAuthors) return [];
+
+    const fuse = new Fuse(this.allVirtualAuthors, {
+      keys: [{ name: 'data.attributes.displayName', weight: 2 }, 'data.attributes.description', 'data.id'],
+    });
+
+    return fuse.search(this.filterString).map((results) => results.item);
+  }
 
   oninit(vnode) {
     super.oninit(vnode);
@@ -78,14 +90,14 @@ export default class SetVirtualAuthorsModal extends Modal {
             class="FormControl"
             id="virtualAuthorFilterTb"
             type="text"
-            onchange={withAttr('value', (val: string) => {
+            oninput={withAttr('value', (val: string) => {
               this.filterString = val;
             })}
             placeholder={app.translator.trans('davwheat-virtual-authors.forum.set_modal.search')}
           />
         </div>
 
-        <div className="Form-group VirtualAuthorList">{this.allVirtualAuthors.map((va) => this.virtualAuthorListItem(va))}</div>
+        <div className="Form-group VirtualAuthorList">{this.filteredVirtualAuthors.map((va) => this.virtualAuthorListItem(va))}</div>
 
         <Button class="Button Button--primary" type="submit">
           {app.translator.trans('davwheat-virtual-authors.forum.set_modal.save')}
@@ -189,7 +201,6 @@ export default class SetVirtualAuthorsModal extends Modal {
     try {
       const result = await this.attrs.discussion.save(attributes);
       app.store.pushPayload(result);
-      this.attrs.onhide();
       this.hide();
     } catch (e) {
       this.onerror(e);

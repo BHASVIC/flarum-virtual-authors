@@ -1364,6 +1364,7 @@ __metadata:
     "@flarum/prettier-config": ^1.0.0
     flarum-tsconfig: ^1.0.0
     flarum-webpack-config: ^1.0.0
+    fuse.js: ^6.4.6
     prettier: ^2.3.0
     typescript: ^4.4.4
     webpack: ^4.26.0
@@ -3270,6 +3271,13 @@ __metadata:
   version: 1.1.1
   resolution: "function-bind@npm:1.1.1"
   checksum: b32fbaebb3f8ec4969f033073b43f5c8befbb58f1a79e12f1d7490358150359ebd92f49e72ff0144f65f2c48ea2a605bff2d07965f548f6474fd8efd95bf361a
+  languageName: node
+  linkType: hard
+
+"fuse.js@npm:^6.4.6":
+  version: 6.4.6
+  resolution: "fuse.js@npm:6.4.6"
+  checksum: 012dfacdc9a3c065d05d031b4eaaad7dd460f66dca100fcef182ed4e70a6b763b6753071702589d0b28def34b48ad077f01426d4ac1d75ef374564f6baa943fd
   languageName: node
   linkType: hard
 

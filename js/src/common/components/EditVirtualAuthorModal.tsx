@@ -73,7 +73,7 @@ export default class EditVirtualAuthorModal extends Modal {
     items.add(
       'submit',
       <Button class="Button Button--primary" type="submit" disabled={this.loading}>
-        {app.translator.trans(`davwheat-virtual-authors.lib.edit_modal.fields.submit_${this.attrs.type}`)}
+        {app.translator.trans(`davwheat-virtual-authors.lib.edit_modal.submit_${this.attrs.type}`)}
         {this.loading && <LoadingIndicator display="inline" size="small" />}
       </Button>,
       -10

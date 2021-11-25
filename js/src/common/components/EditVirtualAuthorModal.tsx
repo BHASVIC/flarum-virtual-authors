@@ -82,7 +82,12 @@ export default class EditVirtualAuthorModal extends Modal {
     return items;
   }
 
-  async onsubmit() {
+  onsubmit(e: SubmitEvent) {
+    e.preventDefault();
+    this.save();
+  }
+
+  async save() {
     this.loading = true;
     m.redraw();
 

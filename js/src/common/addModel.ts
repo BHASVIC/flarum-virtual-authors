@@ -7,4 +7,5 @@ export default function addModel() {
   app.store.models.virtualAuthors = VirtualAuthor;
 
   Discussion.prototype.virtualAuthors = Model.hasMany('virtualAuthors');
+  Discussion.prototype.canSetVirtualAuthors = Model.attribute('canSetVirtualAuthors');
 }

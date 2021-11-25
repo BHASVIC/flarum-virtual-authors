@@ -16,6 +16,8 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
   addModel();
 
   extend(DiscussionControls, 'moderationControls', function (items: ItemList, discussion: Discussion) {
+    if (!discussion.canSetVirtualAuthors()) return;
+
     items.add(
       'setVirtualAuthors',
       <Button
@@ -33,6 +35,8 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
 
   if ('v17development-blog' in flarum.extensions) {
     extend(BlogOverviewController.prototype, 'manageArticleButtons', function (this: BlogOverviewController, items: ItemList) {
+      if (!this.attrs.article.canSetVirtualAuthors()) return;
+
       items.add(
         'setVirtualAuthors',
         <Button

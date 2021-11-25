@@ -33,11 +33,19 @@ davwheat-virtual-authors:
 
     set_modal:
       title: Set virtual authors
-      description: Add and remove virual authors, and optionally provide credit information for each.
 
-      name: Display name
-      credit: Credit
+      existing: Current virtual authors
+      add_new: Choose new virtual authors
+      none_existing: No virtual authors selected.
+
+      search: Search for virtual author
+
+      credit_placeholder: Credit (optional)
 
       delete_confirmation: Remove virtual author from discussion?
+      delete_button: Remove
+      add_button: Add
+
+      virtual_author_exists: Already selected!
 
       save: Save changes

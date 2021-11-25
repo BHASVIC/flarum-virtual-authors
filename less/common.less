@@ -1,0 +1,104 @@
+.SetVirtualAuthorsModal {
+  // Viewport width where modal shifts to "small mode"
+  @modal-small-width: 500px;
+
+  .Placeholder {
+    margin-top: 8px;
+  }
+
+  .SelectedVirtualAuthorListItem,
+  .VirtualAuthorListItem {
+    color: @text-color;
+    background: @body-bg;
+    border-radius: @border-radius;
+    padding: 8px 12px;
+
+    .FormControl:not(:focus) {
+      border-color: #ccc;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+
+  .SelectedVirtualAuthorListItem {
+    display: grid;
+    align-items: center;
+
+    grid-template-areas: "name credit remove";
+    grid-template-columns: 30% 1fr auto;
+
+    @media (max-width: (@modal-small-width - 0.1px)) {
+      grid-template-areas:
+        "name   x       remove"
+        "credit credit  credit";
+
+      grid-template-columns: 30% 1fr auto;
+      row-gap: 8px;
+    }
+
+    &-displayName {
+      grid-area: name;
+
+      font-weight: bold;
+
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
+      white-space: normal;
+    }
+
+    &-credit {
+      grid-area: credit;
+    }
+
+    Button {
+      grid-area: remove;
+
+      margin-left: 8px;
+
+      @media (max-width: (@modal-small-width - 0.1px)) {
+        .Button-label {
+          display: none;
+        }
+
+        .icon {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .VirtualAuthorListItem {
+    display: grid;
+    grid-template-areas:
+      "name button"
+      "desc button";
+
+    &-displayName {
+      font-weight: bold;
+      grid-area: name;
+    }
+
+    &-description {
+      font-style: italic;
+      grid-area: desc;
+    }
+
+    button {
+      grid-area: button;
+      margin-left: auto;
+
+      @media (max-width: (@modal-small-width - 0.1px)) {
+        .Button-label {
+          display: none;
+        }
+
+        .icon {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

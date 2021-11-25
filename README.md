@@ -1,28 +1,9 @@
 # Virtual Authors
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/davwheat/virtual-authors.svg)](https://packagist.org/packages/davwheat/virtual-authors) [![Total Downloads](https://img.shields.io/packagist/dt/davwheat/virtual-authors.svg)](https://packagist.org/packages/davwheat/virtual-authors)
+Virtual Authors is a Flarum extension which allows you to specify multiple authors for a discussion, and attribute credit to them.
 
-A [Flarum](http://flarum.org) extension. Specify virtual authors for your discussions.
-
-## Installation
-
-Install with composer:
-
-```sh
-composer require davwheat/virtual-authors:"*"
-```
-
-## Updating
-
-```sh
-composer update davwheat/virtual-authors:"*"
-php flarum migrate
-php flarum cache:clear
-```
+This is useful for a Flarum instance which posts stories created by users, or art projects, where multiple people may need to be attributed credit for a piece of work.
 
 ## Links
 
-- [Packagist](https://packagist.org/packages/davwheat/virtual-authors)
-- [GitHub](https://github.com/davwheat/virtual-authors)
 - [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
-# flarum-virtual-authors

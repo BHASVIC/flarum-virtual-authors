@@ -22,7 +22,7 @@ jobs:
           cache-dependency-path: js/yarn.lock
 
       - name: Install JS dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
         working-directory: ./js
 
       - name: Check JS formatting

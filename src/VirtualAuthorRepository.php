@@ -25,4 +25,14 @@ class VirtualAuthorRepository
     {
         return VirtualAuthor::findOrFail($id);
     }
+
+    /**
+     * @param int $id
+     * @param User $actor
+     * @return VirtualAuthor
+     */
+    public function find($id, User $actor = null): VirtualAuthor
+    {
+        return VirtualAuthor::find($id);
+    }
 }

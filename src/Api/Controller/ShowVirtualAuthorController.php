@@ -8,8 +8,8 @@ use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
-use Davwheat\VirtualAuthors\VirtualAuthor;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ShowVirtualAuthorController extends AbstractShowController
 {
@@ -36,6 +36,15 @@ class ShowVirtualAuthorController extends AbstractShowController
         $actor = RequestUtil::getActor($request);
         $modelId = Arr::get($request->getQueryParams(), 'id');
 
-        return $this->repository->findOrFail($modelId, $actor);
+        /**
+         * @var ?\Davwheat\VirtualAuthors\VirtualAuthor
+         */
+        $model = $this->repository->find($modelId, $actor);
+
+        if ($model === null) {
+            throw new ModelNotFoundException();
+        }
+
+        return $model;
     }
 }

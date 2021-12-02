@@ -51,8 +51,6 @@ class CreateVirtualAuthorHandler
 
         $model->updateTimestamps();
 
-        $model->save();
-
-        return $model;
+        return $model->save();
     }
 }

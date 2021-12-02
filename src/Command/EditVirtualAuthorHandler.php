@@ -5,6 +5,7 @@ namespace Davwheat\VirtualAuthors\Command;
 use Carbon\Carbon;
 use Davwheat\VirtualAuthors\Event\UpdatingVirtualAuthor;
 use Davwheat\VirtualAuthors\VirtualAuthor;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Davwheat\VirtualAuthors\VirtualAuthorValidator;
@@ -21,10 +22,16 @@ class EditVirtualAuthorHandler
      */
     protected $validator;
 
-    public function __construct(VirtualAuthorRepository $repository, VirtualAuthorValidator $validator)
+    /**
+     * @var Dispatcher
+     */
+    protected $bus;
+
+    public function __construct(VirtualAuthorRepository $repository, VirtualAuthorValidator $validator, Dispatcher $bus)
     {
         $this->repository = $repository;
         $this->validator = $validator;
+        $this->bus = $bus;
     }
 
     public function handle(EditVirtualAuthor $command)
@@ -44,7 +51,7 @@ class EditVirtualAuthorHandler
             $model->description = $data['attributes']['description'];
         }
 
-        event(new UpdatingVirtualAuthor($model, $actor, $data));
+        $this->bus->dispatch(new UpdatingVirtualAuthor($model, $actor, $data));
 
         $this->validator->assertValid($model->getAttributes());
 

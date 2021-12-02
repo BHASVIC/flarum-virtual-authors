@@ -9,6 +9,7 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Davwheat\VirtualAuthors\VirtualAuthorValidator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class EditVirtualAuthorHandler
 {
@@ -41,7 +42,11 @@ class EditVirtualAuthorHandler
 
         $actor->assertCan('administrateVirtualAuthors');
 
-        $model = $this->repository->findOrFail($data['id']);
+        $model = $this->repository->find($data['id']);
+
+        if ($model === null) {
+            throw new ModelNotFoundException();
+        }
 
         if (Arr::has($data, 'attributes.displayName')) {
             $model->displayName = $data['attributes']['displayName'];

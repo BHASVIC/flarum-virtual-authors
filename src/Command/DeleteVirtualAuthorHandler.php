@@ -35,8 +35,6 @@ class DeleteVirtualAuthorHandler
 
         $this->events->dispatch(new DeletingVirtualAuthor($model, $actor, $data));
 
-        $model->deleteOrFail();
-
-        return $model;
+        return $model->delete();
     }
 }

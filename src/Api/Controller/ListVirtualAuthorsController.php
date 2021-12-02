@@ -8,7 +8,6 @@ use Flarum\Http\UrlGenerator;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
-use Davwheat\VirtualAuthors\VirtualAuthor;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Illuminate\Support\Arr;
 
@@ -48,13 +47,12 @@ class ListVirtualAuthorsController extends AbstractListController
         $actor = RequestUtil::getActor($request);
 
         $filters = $this->extractFilter($request);
-        // $sort = $this->extractSort($request);
+        $sort = $this->extractSort($request);
 
-        // $limit = $this->extractLimit($request);
-        // $offset = $this->extractOffset($request);
-        // $include = $this->extractInclude($request);
+        $limit = $this->extractLimit($request);
+        $offset = $this->extractOffset($request);
+        $include = $this->extractInclude($request);
 
-        // ...
         $query = $this->virtualAuthors->query();
 
         if (Arr::has($filters, 'displayName')) {

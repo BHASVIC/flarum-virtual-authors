@@ -67,6 +67,10 @@ return [
         ->addInclude('virtualAuthors')
         ->load('virtualAuthors'),
 
+    (new Extend\ApiController(\Flarum\Api\Controller\UpdateDiscussionController::class))
+        ->addInclude('virtualAuthors')
+        ->load('virtualAuthors'),
+
     (new Extend\ApiController(FlarumController\ListPostsController::class))
         ->load('discussion.virtualAuthors'),
 

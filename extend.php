@@ -12,8 +12,11 @@
 namespace Davwheat\VirtualAuthors;
 
 use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\VirtualAuthors\Search\VirtualAuthorFilterGambit;
 use Flarum\Database\AbstractModel;
 use Flarum\Discussion\Discussion;
+use Flarum\Discussion\Filter\DiscussionFilterer;
+use Flarum\Discussion\Search\DiscussionSearcher;
 use Flarum\Extend;
 
 return [
@@ -69,4 +72,10 @@ return [
 
     (new Extend\Event())
         ->listen(\Flarum\Discussion\Event\Saving::class, Listener\DiscussionSavingListener::class),
+
+    (new Extend\Filter(DiscussionFilterer::class))
+        ->addFilter(VirtualAuthorFilterGambit::class),
+
+    (new Extend\SimpleFlarumSearch(DiscussionSearcher::class))
+        ->addGambit(VirtualAuthorFilterGambit::class),
 ];

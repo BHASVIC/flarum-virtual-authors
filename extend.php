@@ -22,8 +22,8 @@ use Flarum\Extend;
 return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__ . '/js/dist/forum.js')
-        ->css(__DIR__ . '/less/forum.less')
-        ->css(__DIR__ . '/less/common.less'),
+        ->css(__DIR__ . '/less/common.less')
+        ->route('/author/{slug}', 'virtualAuthors.author', Content\AuthorPage::class),
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__ . '/js/dist/admin.js')
@@ -82,4 +82,7 @@ return [
 
     (new Extend\SimpleFlarumSearch(DiscussionSearcher::class))
         ->addGambit(VirtualAuthorFilterGambit::class),
+
+    (new Extend\Settings())
+        ->serializeToForum('davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'boolval', true)
 ];

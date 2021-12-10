@@ -13,7 +13,7 @@ export default class SettingsPage extends ExtensionPage {
   loading: boolean = true;
   errored: boolean = false;
 
-  content() {
+  content(vnode) {
     if (this.loading || !this.virtualAuthors) {
       this.loadAllVirtualAuthors();
 
@@ -36,6 +36,8 @@ export default class SettingsPage extends ExtensionPage {
       );
     }
 
+    const settings = app.extensionData.getSettings(this.extension.id);
+
     return (
       <div className="ExtensionPage-settings">
         <div className="container">
@@ -49,6 +51,19 @@ export default class SettingsPage extends ExtensionPage {
               {app.translator.trans('davwheat-virtual-authors.admin.settings.create_new')}
             </Button>
           </div>
+
+          <hr />
+
+          {settings && (
+            <div className="Form VirtualAuthorSettings">
+              {settings.map(this.buildSettingComponent.bind(this))}
+
+              <div className="Form-group">
+                {this.submitButton(vnode)}
+                <p className="helpText">{app.translator.trans('davwheat-virtual-authors.admin.settings.auto_save_message')}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );

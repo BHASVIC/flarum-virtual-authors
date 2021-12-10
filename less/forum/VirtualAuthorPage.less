@@ -1,0 +1,40 @@
+.VirtualAuthorPage {
+  &-title {
+    font-weight: bold;
+    font-size: 1.75em;
+  }
+
+  .IndexPage-results {
+    padding-top: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+.VirtualAuthorHero {
+  &-profile,
+  &-meta {
+    text-align: left;
+    color: white;
+  }
+
+  &-meta {
+    margin: 0;
+    margin-top: 16px;
+    padding: 0;
+    list-style: none;
+
+    .icon {
+      margin-right: 4px;
+    }
+  }
+
+  h2&-displayName {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+
+    @media @tablet-up {
+      font-size: 28px;
+    }
+  }
+}

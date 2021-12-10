@@ -8,6 +8,10 @@ davwheat-virtual-authors:
 
       create_new: Create new virtual author
 
+      link_to_va_from_discussion: Show link to all discussions by a virtual author in the 'Authors' box
+
+      auto_save_message: Creating new and editing existing virtual authors are saved automatically.
+
     virtual_author_item:
       name: Display name
       description: Description
@@ -28,6 +32,16 @@ davwheat-virtual-authors:
         description: Description (about author)
 
   forum:
+    virtual_author_page:
+      meta_title: "{displayName} - Authors"
+      credited_discussions: Discussions credited to {displayName}
+      discussion_count: "{count, plural, one {# discussion}, other {# discussions}}"
+
+    virtual_authors_panel:
+      heading: Authors
+      error: Failed to load authors.
+      item_link_tooltip: View all discussions by {displayName}
+
     discussion_controls:
       set_virtual_authors: Set virtual authors
 

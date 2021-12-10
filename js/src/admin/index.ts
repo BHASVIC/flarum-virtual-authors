@@ -8,6 +8,11 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
 
   app.extensionData
     .for('davwheat-virtual-authors')
+    .registerSetting({
+      setting: 'davwheat-virtual-authors.link-to-virtual-authors-from-discussion',
+      type: 'switch',
+      label: app.translator.trans('davwheat-virtual-authors.admin.settings.link_to_va_from_discussion'),
+    })
     .registerPage(SettingsPage)
     .registerPermission(
       {

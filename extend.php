@@ -22,6 +22,7 @@ use Flarum\Extend;
 return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__ . '/js/dist/forum.js')
+        ->css(__DIR__ . '/less/forum/forum.less')
         ->css(__DIR__ . '/less/common.less')
         ->route('/author/{slug}', 'virtualAuthors.author', Content\AuthorPage::class),
 

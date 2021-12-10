@@ -1,0 +1,56 @@
+.VirtualAuthorPanel {
+  background: @control-bg;
+  color: @control-color;
+  border-radius: @border-radius;
+
+  &-Title {
+    padding: 16px;
+    padding-bottom: 0;
+
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  &Item {
+    display: block;
+    height: 100%;
+
+    &--clickable {
+      padding: 8px;
+      border-radius: @border-radius;
+      cursor: pointer;
+      text-decoration: none !important;
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:active {
+        background: @body-bg;
+      }
+    }
+
+    h3,
+    p {
+      margin: 0;
+    }
+  }
+
+  &-List {
+    padding: 16px;
+    padding-top: 0;
+    margin: 0;
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 250px));
+    place-items: stretch;
+    gap: 8px;
+
+    @media @phone {
+      padding: 8px;
+      padding-top: 0;
+      gap: 4px;
+    }
+  }
+}

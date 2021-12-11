@@ -124,7 +124,9 @@ export default class SetVirtualAuthorsModal extends Modal {
     return (
       <div className="VirtualAuthorListItem" key={va.id()}>
         <div className="VirtualAuthorListItem-displayName">{va.displayName()}</div>
-        <div className="VirtualAuthorListItem-description">{truncate(va.description(), 75)}</div>
+        <div className="VirtualAuthorListItem-description">
+          {truncate(va.description(), 100) || app.translator.trans('davwheat-virtual-authors.forum.set_modal.no_description')}
+        </div>
 
         {this.isVirtualAuthorSelected(va) ? (
           <Tooltip text={app.translator.trans('davwheat-virtual-authors.forum.set_modal.virtual_author_exists')}>

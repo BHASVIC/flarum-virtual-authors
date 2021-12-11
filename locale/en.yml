@@ -62,6 +62,8 @@ davwheat-virtual-authors:
       delete_button: Remove
       add_button: Add
 
+      no_description: => davwheat-virtual-authors.ref.no_description
+
       virtual_author_exists: Already selected!
 
       save: Save changes

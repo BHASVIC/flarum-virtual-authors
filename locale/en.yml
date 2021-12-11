@@ -16,6 +16,8 @@ davwheat-virtual-authors:
       name: Display name
       description: Description
 
+      no_description: (no description set)
+
       edit: Edit virtual author
       delete_confirmation: Delete virtual author?
 

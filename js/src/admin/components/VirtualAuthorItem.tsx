@@ -26,7 +26,11 @@ export default class VirtualAuthorItem extends Component<IVirtualAuthorItemProps
           <span id={`virtualAuthor-${this.attrs.virtualAuthor.id()}--description`}>
             {app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.description')}
           </span>
-          <span aria-describedby={`virtualAuthor-${this.attrs.virtualAuthor.id()}--description`}>{this.attrs.virtualAuthor.description()}</span>
+          <span aria-describedby={`virtualAuthor-${this.attrs.virtualAuthor.id()}--description`}>
+            {this.attrs.virtualAuthor.description() || (
+              <i>{app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.no_description')}</i>
+            )}
+          </span>
         </div>
 
         <Button className="Button VirtualAuthorItem-editButton" onclick={() => this.edit()}>

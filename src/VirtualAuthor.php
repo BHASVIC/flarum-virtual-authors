@@ -30,12 +30,12 @@ class VirtualAuthor extends AbstractModel
     ];
 
 
-    public static function build($displayName, $description)
+    public static function build(string $displayName, ?string $description)
     {
         $model = new static;
 
         $model->displayName = $displayName;
-        $model->description = $description;
+        $model->description = $description ?? '';
 
         return $model;
     }

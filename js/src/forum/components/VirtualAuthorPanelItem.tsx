@@ -10,6 +10,7 @@ import Tooltip from 'flarum/common/components/Tooltip';
 
 interface IAttrs {
   virtualAuthor: VirtualAuthor;
+  tooltipDirection?: string;
 }
 
 export default class VirtualAuthorPanelItem extends Component<IAttrs> {
@@ -33,6 +34,7 @@ export default class VirtualAuthorPanelItem extends Component<IAttrs> {
 
     return (
       <Tooltip
+        position={this.attrs.tooltipDirection || 'top'}
         text={app.translator.trans('davwheat-virtual-authors.forum.virtual_authors_panel.item_link_tooltip', {
           displayName: this.attrs.virtualAuthor.displayName(),
         })}

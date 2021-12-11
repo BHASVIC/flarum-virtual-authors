@@ -1,0 +1,24 @@
+.DiscussionPage {
+  .VirtualAuthorPanel:not(.VirtualAuthorPanel--sidebar) {
+    margin-top: 16px;
+    margin-bottom: 8px;
+
+    @media @desktop-up {
+      &-Title {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .VirtualAuthorPanel--sidebar {
+    .VirtualAuthorPanel {
+      &-Title {
+        font-size: 16px;
+      }
+
+      &-List {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

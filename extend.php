@@ -86,4 +86,5 @@ return [
 
     (new Extend\Settings())
         ->serializeToForum('davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'boolval', true)
+        ->serializeToForum('davwheat-virtual-authors.authors-in-sidebar', 'davwheat-virtual-authors.authors-in-sidebar', 'boolval', false),
 ];

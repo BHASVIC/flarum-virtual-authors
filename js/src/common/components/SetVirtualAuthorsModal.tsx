@@ -68,7 +68,7 @@ export default class SetVirtualAuthorsModal extends Modal {
 
     return (
       <div class="Modal-body">
-        <p>{app.translator.trans('davwheat-virtual-authors.forum.set_modal.existing')}</p>
+        <h3>{app.translator.trans('davwheat-virtual-authors.forum.set_modal.existing')}</h3>
 
         <div className="Form-group SelectedVirtualAuthorList">
           {this.selectedVirtualAuthors.length === 0 && (
@@ -79,7 +79,7 @@ export default class SetVirtualAuthorsModal extends Modal {
           {this.selectedVirtualAuthors.map((va) => this.selectedVirtualAuthorItem(va))}
         </div>
 
-        <p>{app.translator.trans('davwheat-virtual-authors.forum.set_modal.add_new')}</p>
+        <h3>{app.translator.trans('davwheat-virtual-authors.forum.set_modal.add_new')}</h3>
 
         <div class="Form-group">
           <label for="virtualAuthorFilterTb" class="sr-only">

@@ -131,7 +131,7 @@ export default class SetVirtualAuthorsModal extends Modal {
         {this.isVirtualAuthorSelected(va) ? (
           <Tooltip text={app.translator.trans('davwheat-virtual-authors.forum.set_modal.virtual_author_exists')}>
             <Button disabled class="Button" icon="fas fa-plus" onclick={() => this.addVirtualAuthor(va)}>
-              {app.translator.trans('davwheat-virtual-authors.forum.set_modal.add_button')}
+              {app.translator.trans('davwheat-virtual-authors.forum.set_modal.added_button')}
             </Button>
           </Tooltip>
         ) : (

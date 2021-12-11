@@ -61,6 +61,7 @@ davwheat-virtual-authors:
       delete_confirmation: Remove virtual author from discussion?
       delete_button: Remove
       add_button: Add
+      added_button: Added
 
       no_description: => davwheat-virtual-authors.ref.no_description
 

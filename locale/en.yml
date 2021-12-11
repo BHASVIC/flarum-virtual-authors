@@ -5,12 +5,14 @@ davwheat-virtual-authors:
 
     settings:
       errored: Failed to load virtual authors from the server.
-
       create_new: Create new virtual author
+      auto_save_message: Creating new and editing existing virtual authors are saved automatically.
 
+      # .registerSettings() options
       link_to_va_from_discussion: Show link to all discussions by a virtual author in the 'Authors' box
 
-      auto_save_message: Creating new and editing existing virtual authors are saved automatically.
+      authors_in_sidebar: Show authors in sidebar instead of above first post
+      authors_in_sidebar_help: This has no effect for the Blog extension.
 
     virtual_author_item:
       name: Display name

@@ -7,6 +7,7 @@ import type Discussion from 'flarum/common/models/Discussion';
 
 import Button from 'flarum/common/components/Button';
 import DiscussionControls from 'flarum/forum/utils/DiscussionControls';
+import DiscussionPage from 'flarum/forum/components/DiscussionPage';
 
 import addModel from '../common/addModel';
 import SetVirtualAuthorsModal from '../common/components/SetVirtualAuthorsModal';
@@ -49,6 +50,27 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
     );
   });
 
+  extend(DiscussionPage.prototype, 'pageContent', function (this: DiscussionPage, items: ItemList) {
+    if (app.forum.attribute('davwheat-virtual-authors.authors-in-sidebar')) return;
+    if (!this.discussion.virtualAuthors().length) return;
+
+    items.add(
+      'virtualAuthors',
+      <div className="container">
+        <VirtualAuthorPanel discussion={this.discussion} />
+      </div>,
+      50
+    );
+  });
+
+  extend(DiscussionPage.prototype, 'sidebarItems', function (this: DiscussionPage, items: ItemList) {
+    if (!app.forum.attribute('davwheat-virtual-authors.authors-in-sidebar')) return;
+    if (!this.discussion.virtualAuthors().length) return;
+
+    items.add('virtualAuthors', <VirtualAuthorPanel isSidebar discussion={this.discussion} />, 125);
+  });
+
+  // Blog-specific customisations
   if ('v17development-blog' in flarum.extensions) {
     extend(BlogOverviewController.prototype, 'manageArticleButtons', function (this: any, items: ItemList) {
       if (!this.attrs.article.canSetVirtualAuthors()) return;

@@ -13,6 +13,12 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
       type: 'switch',
       label: app.translator.trans('davwheat-virtual-authors.admin.settings.link_to_va_from_discussion'),
     })
+    .registerSetting({
+      setting: 'davwheat-virtual-authors.authors-in-sidebar',
+      type: 'switch',
+      label: app.translator.trans('davwheat-virtual-authors.admin.settings.authors_in_sidebar'),
+      help: app.translator.trans('davwheat-virtual-authors.admin.settings.authors_in_sidebar_help'),
+    })
     .registerPage(SettingsPage)
     .registerPermission(
       {

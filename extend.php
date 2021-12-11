@@ -12,7 +12,11 @@
 namespace Davwheat\VirtualAuthors;
 
 use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
+use Davwheat\VirtualAuthors\Filter\VirtualAuthorFilterer;
+use Davwheat\VirtualAuthors\Search\VirtualAuthorDiscussionFilterGambit;
+use Davwheat\VirtualAuthors\Search\VirtualAuthorDisplayNameGambit;
 use Davwheat\VirtualAuthors\Search\VirtualAuthorFilterGambit;
+use Davwheat\VirtualAuthors\Search\VirtualAuthorSearcher;
 use Flarum\Database\AbstractModel;
 use Flarum\Discussion\Discussion;
 use Flarum\Discussion\Filter\DiscussionFilterer;
@@ -79,10 +83,14 @@ return [
         ->listen(\Flarum\Discussion\Event\Saving::class, Listener\DiscussionSavingListener::class),
 
     (new Extend\Filter(DiscussionFilterer::class))
-        ->addFilter(VirtualAuthorFilterGambit::class),
-
+        ->addFilter(VirtualAuthorDiscussionFilterGambit::class),
     (new Extend\SimpleFlarumSearch(DiscussionSearcher::class))
-        ->addGambit(VirtualAuthorFilterGambit::class),
+        ->addGambit(VirtualAuthorDiscussionFilterGambit::class),
+
+    (new Extend\Filter(VirtualAuthorFilterer::class))
+        ->addFilter(VirtualAuthorDisplayNameGambit::class),
+    (new Extend\SimpleFlarumSearch(VirtualAuthorSearcher::class))
+        ->addGambit(VirtualAuthorDisplayNameGambit::class),
 
     (new Extend\Settings())
         ->serializeToForum('davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'boolval', true)

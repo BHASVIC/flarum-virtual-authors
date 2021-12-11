@@ -8,11 +8,11 @@ use Flarum\Search\AbstractRegexGambit;
 use Flarum\Search\SearchState;
 use Illuminate\Database\Query\Builder;
 
-class VirtualAuthorFilterGambit extends AbstractRegexGambit implements FilterInterface
+class VirtualAuthorDisplayNameGambit extends AbstractRegexGambit implements FilterInterface
 {
     protected function getGambitPattern()
     {
-        return 'virtual-author:(.+)';
+        return 'displayName:\"(.+)\"';
     }
 
     protected function conditions(SearchState $search, array $matches, $negate)
@@ -22,7 +22,7 @@ class VirtualAuthorFilterGambit extends AbstractRegexGambit implements FilterInt
 
     public function getFilterKey(): string
     {
-        return 'virtual-author';
+        return 'displayName';
     }
 
     public function filter(FilterState $filterState, string $filterValue, bool $negate)
@@ -30,18 +30,8 @@ class VirtualAuthorFilterGambit extends AbstractRegexGambit implements FilterInt
         $this->constrain($filterState->getQuery(), $filterValue, $negate);
     }
 
-    protected function constrain(Builder $query, $rawIds, $negate)
+    protected function constrain(Builder $query, $name, $negate)
     {
-        $ids = explode(',', $rawIds);
-
-        $query->where(function (Builder $query) use ($ids, $negate) {
-            foreach ($ids as $id) {
-                $query->whereIn('discussions.id', function (Builder $query) use ($id) {
-                    $query->select('discussion_id')
-                        ->from('discussion_virtual_author')
-                        ->where('virtual_author_id', $id);
-                }, 'or', $negate);
-            }
-        });
+        $query->where('displayName', 'like', '%' . $name . '%', 'or');
     }
 }

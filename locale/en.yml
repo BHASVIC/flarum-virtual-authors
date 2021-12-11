@@ -16,7 +16,7 @@ davwheat-virtual-authors:
       name: Display name
       description: Description
 
-      no_description: (no description set)
+      no_description: => davwheat-virtual-authors.ref.no_description
 
       edit: Edit virtual author
       delete_confirmation: Delete virtual author?
@@ -65,3 +65,6 @@ davwheat-virtual-authors:
       virtual_author_exists: Already selected!
 
       save: Save changes
+
+  ref:
+    no_description: (no description set)

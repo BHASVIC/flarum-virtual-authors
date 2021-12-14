@@ -84,13 +84,12 @@ return [
 
     (new Extend\Filter(DiscussionFilterer::class))
         ->addFilter(VirtualAuthorDiscussionFilterGambit::class),
+
     (new Extend\SimpleFlarumSearch(DiscussionSearcher::class))
         ->addGambit(VirtualAuthorDiscussionFilterGambit::class),
 
     (new Extend\Filter(VirtualAuthorFilterer::class))
         ->addFilter(VirtualAuthorDisplayNameGambit::class),
-    (new Extend\SimpleFlarumSearch(VirtualAuthorSearcher::class))
-        ->addGambit(VirtualAuthorDisplayNameGambit::class),
 
     (new Extend\Settings())
         ->serializeToForum('davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'davwheat-virtual-authors.link-to-virtual-authors-from-discussion', 'boolval', true)

@@ -8,7 +8,7 @@ use Flarum\Discussion\Discussion;
 use Flarum\Foundation\EventGeneratorTrait;
 
 /**
- * @property string $displayName
+ * @property string $display_name
  * @property string $description
  */
 class VirtualAuthor extends AbstractModel
@@ -25,16 +25,16 @@ class VirtualAuthor extends AbstractModel
      * @var array
      */
     protected $attributes = [
-        'displayName' => '',
+        'display_name' => '',
         'description' => '',
     ];
 
 
-    public static function build(string $displayName, ?string $description)
+    public static function build(string $display_name, ?string $description)
     {
         $model = new static;
 
-        $model->displayName = $displayName;
+        $model->display_name = $display_name;
         $model->description = $description ?? '';
 
         return $model;

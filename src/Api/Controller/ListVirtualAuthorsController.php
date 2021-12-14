@@ -21,12 +21,12 @@ class ListVirtualAuthorsController extends AbstractListController
     /**
      * {@inheritDoc}
      */
-    public $sort = ['displayName' => 'desc'];
+    public $sort = ['display_name' => 'desc'];
 
     /**
      * {@inheritdoc}
      */
-    public $sortFields = ['displayName', 'discussionCount'];
+    public $sortFields = ['display_name', 'discussionCount'];
 
     /**
      * {@inheritdoc}

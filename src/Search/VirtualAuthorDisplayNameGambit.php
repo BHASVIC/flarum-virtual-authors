@@ -32,6 +32,6 @@ class VirtualAuthorDisplayNameGambit extends AbstractRegexGambit implements Filt
 
     protected function constrain(Builder $query, $name, $negate)
     {
-        $query->where('displayName', 'like', '%' . $name . '%', 'or');
+        $query->where('display_name', 'like', '%' . $name . '%', 'or');
     }
 }

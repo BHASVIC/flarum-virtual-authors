@@ -10,11 +10,8 @@ use Tobscure\JsonApi\Document;
 use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
 use Davwheat\VirtualAuthors\Filter\VirtualAuthorFilterer;
 use Davwheat\VirtualAuthors\Search\VirtualAuthorSearcher;
-use Davwheat\VirtualAuthors\VirtualAuthor;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Flarum\Query\QueryCriteria;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class ListVirtualAuthorsController extends AbstractListController
 {
@@ -61,17 +58,11 @@ class ListVirtualAuthorsController extends AbstractListController
     protected $filterer;
 
     /**
-     * @var VirtualAuthorSearcher
-     */
-    protected $searcher;
-
-    /**
      * @param UrlGenerator $url
      */
-    public function __construct(VirtualAuthorFilterer $filterer, VirtualAuthorSearcher $searcher, UrlGenerator $url, VirtualAuthorRepository $virtualAuthors)
+    public function __construct(VirtualAuthorFilterer $filterer, UrlGenerator $url, VirtualAuthorRepository $virtualAuthors)
     {
         $this->filterer = $filterer;
-        $this->searcher = $searcher;
         $this->url = $url;
         $this->virtualAuthors = $virtualAuthors;
     }
@@ -93,11 +84,7 @@ class ListVirtualAuthorsController extends AbstractListController
         $offset = $this->extractOffset($request);
 
         $criteria = new QueryCriteria($actor, $filters, $sort, $sortIsDefault);
-        if (array_key_exists('q', $filters)) {
-            $results = $this->searcher->search($criteria, $limit, $offset);
-        } else {
-            $results = $this->filterer->filter($criteria, $limit, $offset);
-        }
+        $results = $this->filterer->filter($criteria, $limit, $offset);
 
         $document->addPaginationLinks(
             $this->url->to('api')->route('virtualAuthors.index'),

@@ -28,6 +28,6 @@ class VirtualAuthorFilterer extends AbstractFilterer
 
     protected function getQuery(User $actor): Builder
     {
-        return $this->virtualAuthors->query()->select('virtualAuthors.*')->whereVisibleTo($actor);
+        return $this->virtualAuthors->query();
     }
 }

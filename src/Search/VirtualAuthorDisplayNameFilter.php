@@ -20,6 +20,17 @@ class VirtualAuthorDisplayNameFilter implements FilterInterface
 
     protected function constrain(Builder $query, $name, $negate)
     {
-        $query->where('display_name', 'like', '%' . $name . '%', 'or', $negate);
+        $query->where('display_name', 'like', '%' . $this->escapeLikeString($name) . '%', 'or', $negate);
+    }
+
+    /**
+     * Escape special characters that can be used as wildcards in a LIKE query.
+     *
+     * @param string $string
+     * @return string
+     */
+    private function escapeLikeString($string)
+    {
+        return str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $string);
     }
 }

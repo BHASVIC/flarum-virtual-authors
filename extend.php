@@ -15,8 +15,6 @@ use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
 use Davwheat\VirtualAuthors\Filter\VirtualAuthorFilterer;
 use Davwheat\VirtualAuthors\Search\VirtualAuthorDiscussionFilterGambit;
 use Davwheat\VirtualAuthors\Search\VirtualAuthorDisplayNameGambit;
-use Davwheat\VirtualAuthors\Search\VirtualAuthorFilterGambit;
-use Davwheat\VirtualAuthors\Search\VirtualAuthorSearcher;
 use Flarum\Database\AbstractModel;
 use Flarum\Discussion\Discussion;
 use Flarum\Discussion\Filter\DiscussionFilterer;
@@ -76,7 +74,7 @@ return [
         ->addInclude('virtualAuthors')
         ->load('virtualAuthors'),
 
-    (new Extend\ApiController(FlarumController\ListPostsController::class))
+    (new Extend\ApiController(\Flarum\Api\Controller\ListPostsController::class))
         ->load('discussion.virtualAuthors'),
 
     (new Extend\Event())

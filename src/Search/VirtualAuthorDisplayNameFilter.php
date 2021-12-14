@@ -6,7 +6,7 @@ use Flarum\Filter\FilterInterface;
 use Flarum\Filter\FilterState;
 use Illuminate\Database\Query\Builder;
 
-class VirtualAuthorDisplayNameGambit implements FilterInterface
+class VirtualAuthorDisplayNameFilter implements FilterInterface
 {
     public function getFilterKey(): string
     {

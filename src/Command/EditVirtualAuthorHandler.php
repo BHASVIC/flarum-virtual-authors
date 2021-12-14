@@ -48,7 +48,7 @@ class EditVirtualAuthorHandler
         }
 
         if (Arr::has($data, 'attributes.displayName')) {
-            $model->displayName = $data['attributes']['displayName'];
+            $model->display_name = $data['attributes']['displayName'];
         }
 
         if (Arr::has($data, 'attributes.description')) {

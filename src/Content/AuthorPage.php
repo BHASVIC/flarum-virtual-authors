@@ -33,7 +33,7 @@ class AuthorPage extends Index
         $document = parent::__invoke($document, $request);
 
         $document->title = $this->translator->trans('davwheat-virtual-authors.forum.virtual_author_page.meta_title', [
-            'displayName' => $virtualAuthor->displayName
+            'displayName' => $virtualAuthor->display_name
         ]);
 
         return $document;

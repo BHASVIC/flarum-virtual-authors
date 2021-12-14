@@ -28,7 +28,7 @@ class VirtualAuthorSerializer extends AbstractSerializer
         }
 
         $attributes = [
-            'displayName' => $model->displayName,
+            'displayName' => $model->display_name,
             'description' => $model->description,
             'discussionCount' => $model->discussionCount(),
         ];

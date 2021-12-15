@@ -8,13 +8,15 @@ davwheat-virtual-authors:
       create_new: Create new virtual author
       auto_save_message: Creating new and editing existing virtual authors are saved automatically.
 
-      # .registerSettings() options
+      search_placeholder: Search by name
+
       link_to_va_from_discussion: Show link to all discussions by a virtual author in the 'Authors' box
 
       authors_in_sidebar: Show authors in sidebar instead of above first post
       authors_in_sidebar_help: This has no effect for the Blog extension.
 
     virtual_author_item:
+      id: ID
       name: Display name
       description: Description
 

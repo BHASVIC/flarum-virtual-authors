@@ -9,7 +9,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 use Davwheat\VirtualAuthors\Api\Serializer\VirtualAuthorSerializer;
 use Davwheat\VirtualAuthors\Filter\VirtualAuthorFilterer;
-use Davwheat\VirtualAuthors\Search\VirtualAuthorSearcher;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Flarum\Query\QueryCriteria;
 
@@ -23,7 +22,7 @@ class ListVirtualAuthorsController extends AbstractListController
     /**
      * {@inheritdoc}
      */
-    public $sortFields = ['display_name', 'discussionCount'];
+    public $sortFields = ['display_name', 'discussionCount', 'id'];
 
     /**
      * {@inheritdoc}

@@ -16,6 +16,13 @@ export default class VirtualAuthorItem extends Component<IVirtualAuthorItemProps
     return (
       <div className="VirtualAuthorItem">
         <div className="VirtualAuthorItem-attribute">
+          <span id={`virtualAuthor-${this.attrs.virtualAuthor.id()}--id`}>
+            {app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.id')}
+          </span>
+          <span aria-describedby={`virtualAuthor-${this.attrs.virtualAuthor.id()}--id`}>{this.attrs.virtualAuthor.id()}</span>
+        </div>
+
+        <div className="VirtualAuthorItem-attribute">
           <span id={`virtualAuthor-${this.attrs.virtualAuthor.id()}--name`}>
             {app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.name')}
           </span>

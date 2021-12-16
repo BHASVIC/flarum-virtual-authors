@@ -23,22 +23,17 @@ interface ISelectedVirtualAuthorState {
 export default class SetVirtualAuthorsModal extends Modal {
   attrs!: ISetModalAttrs;
 
-  allVirtualAuthors: VirtualAuthor[] | null = null;
   virtualAuthors: VirtualAuthor[] | null = null;
 
   selectedVirtualAuthors: ISelectedVirtualAuthorState[] = [];
 
   filterString: string = '';
 
-  get filteredVirtualAuthors(): VirtualAuthor[] {
-    if (!this.filterString) return this.allVirtualAuthors;
-    if (!this.allVirtualAuthors) return [];
+  timeoutKey: number | null = null;
 
-    const fuse = new Fuse(this.allVirtualAuthors, {
-      keys: [{ name: 'data.attributes.displayName', weight: 2 }, 'data.attributes.description', 'data.id'],
-    });
-
-    return fuse.search(this.filterString).map((results) => results.item);
+  async filterVirtualAuthors() {
+    this.virtualAuthors = await app.store.find('virtualAuthors', { filter: { displayName: this.filterString }, sort: 'displayName' });
+    m.redraw();
   }
 
   oninit(vnode) {
@@ -58,7 +53,7 @@ export default class SetVirtualAuthorsModal extends Modal {
   }
 
   content() {
-    if (!this.allVirtualAuthors) {
+    if (this.virtualAuthors === null) {
       return (
         <div class="Modal-body">
           <LoadingIndicator />
@@ -92,12 +87,16 @@ export default class SetVirtualAuthorsModal extends Modal {
             type="text"
             oninput={withAttr('value', (val: string) => {
               this.filterString = val;
+
+              // debounce implementation
+              if (this.timeoutKey) clearTimeout(this.timeoutKey);
+              this.timeoutKey = setTimeout(() => this.filterVirtualAuthors(), 400);
             })}
             placeholder={app.translator.trans('davwheat-virtual-authors.forum.set_modal.search')}
           />
         </div>
 
-        <div className="Form-group VirtualAuthorList">{this.filteredVirtualAuthors.map((va) => this.virtualAuthorListItem(va))}</div>
+        <div className="Form-group VirtualAuthorList">{this.virtualAuthors?.map((va) => this.virtualAuthorListItem(va))}</div>
 
         <Button class="Button Button--primary" type="submit">
           {app.translator.trans('davwheat-virtual-authors.forum.set_modal.save')}
@@ -166,12 +165,11 @@ export default class SetVirtualAuthorsModal extends Modal {
   }
 
   async loadData() {
-    this.allVirtualAuthors = null;
+    this.virtualAuthors = null;
     m.redraw();
 
     try {
-      await app.store.find('virtualAuthors');
-      this.allVirtualAuthors = app.store.all('virtualAuthors');
+      this.virtualAuthors = await app.store.find('virtualAuthors');
       m.redraw();
     } catch (e) {
       this.onerror(e);

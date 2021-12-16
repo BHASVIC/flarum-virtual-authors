@@ -44,9 +44,4 @@ class VirtualAuthor extends AbstractModel
     {
         return $this->belongsToMany(Discussion::class, 'discussion_virtual_author', 'virtual_author_id', 'discussion_id');
     }
-
-    public function discussionCount()
-    {
-        return $this->discussions()->count();
-    }
 }

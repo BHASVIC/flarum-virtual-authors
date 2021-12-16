@@ -13,7 +13,7 @@ class VirtualAuthorRepository
      */
     public function query()
     {
-        return VirtualAuthor::query();
+        return VirtualAuthor::withCount('discussions');
     }
 
     /**

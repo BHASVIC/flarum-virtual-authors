@@ -4,7 +4,7 @@ namespace Davwheat\VirtualAuthors\Command;
 
 use Carbon\Carbon;
 use Davwheat\VirtualAuthors\Event\UpdatingVirtualAuthor;
-use Illuminate\Contracts\Bus\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Davwheat\VirtualAuthors\VirtualAuthorValidator;

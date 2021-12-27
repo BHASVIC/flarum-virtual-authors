@@ -1,7 +1,7 @@
 davwheat-virtual-authors:
   admin:
     permissions:
-      set_virtual_authors: Add and remove discussion virtual authors
+      set_virtual_authors: Set virtual authors on discussions
 
     settings:
       errored: Failed to load virtual authors from the server.

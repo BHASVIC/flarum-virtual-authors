@@ -23,7 +23,7 @@ class VirtualAuthorRepository
      */
     public function findOrFail($id, User $actor = null): VirtualAuthor
     {
-        return VirtualAuthor::findOrFail($id);
+        return $this->query()->findOrFail($id);
     }
 
     /**
@@ -33,6 +33,6 @@ class VirtualAuthorRepository
      */
     public function find($id, User $actor = null): VirtualAuthor
     {
-        return VirtualAuthor::find($id);
+        return $this->query()->find($id);
     }
 }

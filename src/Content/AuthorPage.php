@@ -2,17 +2,32 @@
 
 namespace Davwheat\VirtualAuthors\Content;
 
-use Davwheat\VirtualAuthors\VirtualAuthor;
+use Davwheat\VirtualAuthors\VirtualAuthorRepository;
+use Flarum\Api\Client;
 use Flarum\Forum\Content\Index;
 use Flarum\Frontend\Document;
 use Flarum\Http\Exception\RouteNotFoundException;
+use Flarum\Http\UrlGenerator;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AuthorPage extends Index
 {
+    /**
+     * @var VirtualAuthorRepository
+     */
+    private $repository;
+
+    public function __construct(Client $api, Factory $view, SettingsRepositoryInterface $settings, UrlGenerator $url, TranslatorInterface $translator, VirtualAuthorRepository $repository)
+    {
+        parent::__construct($api, $view, $settings, $url, $translator);
+
+        $this->repository = $repository;
+    }
+
     public function __invoke(Document $document, ServerRequestInterface $request)
     {
         if (!$this->settings->get('davwheat-virtual-authors.virtual-author-pages', true)) {
@@ -22,7 +37,7 @@ class AuthorPage extends Index
         $queryParams = $request->getQueryParams();
 
         $id = Arr::pull($queryParams, 'slug');
-        $virtualAuthor = VirtualAuthor::findOrFail($id);
+        $virtualAuthor = $this->repository->findOrFail($id);
 
         Arr::pull($queryParams, 'q');
 

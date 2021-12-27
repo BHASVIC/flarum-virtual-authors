@@ -9,7 +9,6 @@ import type Discussion from 'flarum/common/models/Discussion';
 import type VirtualAuthor from '../../common/VirtualAuthor';
 import type Mithril from 'mithril';
 import Button from 'flarum/common/components/Button';
-import Fuse from 'fuse.js';
 
 interface ISetModalAttrs {
   discussion: Discussion & { virtualAuthors(): VirtualAuthor[] };

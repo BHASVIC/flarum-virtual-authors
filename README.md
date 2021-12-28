@@ -1,6 +1,6 @@
 # davwheat Virtual Authors
 
-![](https://flarum-badge-api.davwheat.dev/v1/davwheat/virtual-authors)
+![](https://flarum-badge-api.davwheat.dev/v1/compat-latest/davwheat/virtual-authors)
 
 This is a premium extension, which you can subscribe to on Extiverse. Monthly plans come with a 14 day free trial so you can see if the extension is a match for you and your forum. Cancel within this period with no questions asked.
 

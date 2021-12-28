@@ -12,7 +12,9 @@
   }
 
   &Item {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
 
     &--clickable {
@@ -47,6 +49,15 @@
 
     @media @phone {
       gap: 4px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 400px) {
+      grid-template-columns: 1fr;
     }
   }
 }

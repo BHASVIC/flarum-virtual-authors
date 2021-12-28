@@ -1,10 +1,12 @@
 import app from 'flarum/admin/app';
 
 import addModel from '../common/addModel';
+import addDiscussionBadge from '../common/addDiscussionBadge';
 import SettingsPage from './pages/SettingsPage';
 
 app.initializers.add('davwheat/manual-blog-authors', () => {
   addModel();
+  addDiscussionBadge();
 
   app.extensionData
     .for('davwheat-virtual-authors')
@@ -18,6 +20,11 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
       type: 'switch',
       label: app.translator.trans('davwheat-virtual-authors.admin.settings.authors_in_sidebar'),
       help: app.translator.trans('davwheat-virtual-authors.admin.settings.authors_in_sidebar_help'),
+    })
+    .registerSetting({
+      setting: 'davwheat-virtual-authors.discussion-badge',
+      type: 'switch',
+      label: app.translator.trans('davwheat-virtual-authors.admin.settings.discussion_badge'),
     })
     .registerPage(SettingsPage)
     .registerPermission(

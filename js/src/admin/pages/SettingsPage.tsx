@@ -42,6 +42,19 @@ export default class SettingsPage extends ExtensionPage {
       return (
         <div className="ExtensionPage-settings">
           <div className="container">
+            {settings && (
+              <div className="Form VirtualAuthorSettings">
+                {settings.map(this.buildSettingComponent.bind(this))}
+
+                <div className="Form-group">
+                  {this.submitButton(vnode)}
+                  <p className="helpText">{app.translator.trans('davwheat-virtual-authors.admin.settings.auto_save_message')}</p>
+                </div>
+              </div>
+            )}
+
+            <hr />
+
             <input
               type="text"
               className="FormControl VirtualAuthorSearch"
@@ -59,19 +72,6 @@ export default class SettingsPage extends ExtensionPage {
             />
 
             <LoadingIndicator />
-
-            <hr />
-
-            {settings && (
-              <div className="Form VirtualAuthorSettings">
-                {settings.map(this.buildSettingComponent.bind(this))}
-
-                <div className="Form-group">
-                  {this.submitButton(vnode)}
-                  <p className="helpText">{app.translator.trans('davwheat-virtual-authors.admin.settings.auto_save_message')}</p>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       );
@@ -80,6 +80,19 @@ export default class SettingsPage extends ExtensionPage {
     return (
       <div className="ExtensionPage-settings">
         <div className="container">
+          {settings && (
+            <div className="Form VirtualAuthorSettings">
+              {settings.map(this.buildSettingComponent.bind(this))}
+
+              <div className="Form-group">
+                {this.submitButton(vnode)}
+                <p className="helpText">{app.translator.trans('davwheat-virtual-authors.admin.settings.auto_save_message')}</p>
+              </div>
+            </div>
+          )}
+
+          <hr />
+
           <input
             type="text"
             className="FormControl VirtualAuthorSearch"
@@ -130,19 +143,6 @@ export default class SettingsPage extends ExtensionPage {
               {app.translator.trans('davwheat-virtual-authors.admin.settings.create_new')}
             </Button>
           </div>
-
-          <hr />
-
-          {settings && (
-            <div className="Form VirtualAuthorSettings">
-              {settings.map(this.buildSettingComponent.bind(this))}
-
-              <div className="Form-group">
-                {this.submitButton(vnode)}
-                <p className="helpText">{app.translator.trans('davwheat-virtual-authors.admin.settings.auto_save_message')}</p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     );

@@ -15,6 +15,8 @@ davwheat-virtual-authors:
       authors_in_sidebar: Show authors in sidebar instead of above first post
       authors_in_sidebar_help: This has no effect for the Blog extension.
 
+      discussion_badge: Show badge on discussions with Virtual Authors
+
       prev: Previous page
       next: Next page
 
@@ -39,6 +41,8 @@ davwheat-virtual-authors:
       fields:
         name: Display name
         description: Description (about author)
+
+    discussion-badge: "{count, plural, one {Has virtual author}, other {Has virtual authors}}"
 
   forum:
     virtual_author_page:

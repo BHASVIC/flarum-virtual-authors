@@ -10,6 +10,7 @@ import DiscussionControls from 'flarum/forum/utils/DiscussionControls';
 import DiscussionPage from 'flarum/forum/components/DiscussionPage';
 
 import addModel from '../common/addModel';
+import addDiscussionBadge from '../common/addDiscussionBadge';
 import SetVirtualAuthorsModal from '../common/components/SetVirtualAuthorsModal';
 
 import VirtualAuthorPanel from './components/VirtualAuthorPanel';
@@ -20,6 +21,7 @@ import BlogItem from 'flarum/v17development/blog/pages/BlogItem';
 
 app.initializers.add('davwheat/manual-blog-authors', () => {
   addModel();
+  addDiscussionBadge();
 
   app.routes['virtualAuthors.author'] = {
     path: '/author/:slug',

@@ -4,6 +4,8 @@
 
 This is a premium extension, which you can subscribe to on Extiverse. Monthly plans come with a 14 day free trial so you can see if the extension is a match for you and your forum. Cancel within this period with no questions asked.
 
+This extension is also compatible with `v17development/flarum-blog`, with some caveats. See the "Integrations" section for info.
+
 ## Description
 
 Virtual Authors is a Flarum extension which allows you to specify one or more 'virtual authors' for a discussion, and attribute specific credit to them.
@@ -43,6 +45,25 @@ This toggles the location of the 'Authors' pane on discussions. This can be set 
 This toggles the badge shown on discussions with virtual authors.
 
 ![](https://u.davwheat.dev/euHOkRRv.png)
+
+## Integrations
+
+This extension is compatible with the Flarum Blog extension, by v17-development. However, you **must use the patched version** created by myself for extensibility improvements that this extension requires, provided [my pull request](https://github.com/v17development/flarum-blog/pull/110) has not been merged.
+
+This patched version is a drop-in replacement for Flarum Blog. If you have other extensions which modify Flarum Blog, you may encounter issues, however.
+
+This can be done by adding this to your `composer.json`:
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/bhasvic/flarum-blog"
+    }
+  ]
+}
+```
 
 ## Future development
 

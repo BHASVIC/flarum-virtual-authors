@@ -7,7 +7,7 @@
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
-        "flarum/core": "^v1.1.1"
+        "flarum/core": "^1.1.0"
     },
     "authors": [
         {
@@ -23,16 +23,17 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "Virtual Authors",
+            "title": "davwheat Virtual Authors",
             "category": "features",
             "icon": {
                 "name": "fas fa-ghost",
-                "backgroundColor": "#e52434",
-                "color": "#fff"
+                "backgroundColor": "#51c5dd",
+                "color": "#000"
             }
         }
     },
     "require-dev": {
-        "symfony/var-dumper": "^5.3"
+        "symfony/var-dumper": "^v6.0.1",
+        "flarum/core": "@dev"
     }
 }

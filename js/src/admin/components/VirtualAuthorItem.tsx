@@ -40,12 +40,13 @@ export default class VirtualAuthorItem extends Component<IVirtualAuthorItemProps
           </span>
         </div>
 
-        <Button className="Button VirtualAuthorItem-editButton" onclick={() => this.edit()}>
+        <Button class="Button VirtualAuthorItem-editButton" onclick={() => this.edit()}>
           {app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.edit')}
         </Button>
 
         <Button
-          className="Button Button--danger VirtualAuthorItem-deleteButton"
+          aria-label={app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.delete_a11y_label')}
+          class="Button Button--danger VirtualAuthorItem-deleteButton"
           onclick={async () => {
             if (confirm(extractText(app.translator.trans('davwheat-virtual-authors.admin.virtual_author_item.delete_confirmation')))) {
               await this.attrs.virtualAuthor.delete({});

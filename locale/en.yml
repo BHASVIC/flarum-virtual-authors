@@ -30,6 +30,8 @@ davwheat-virtual-authors:
       edit: Edit virtual author
       delete_confirmation: Delete virtual author?
 
+      delete_a11y_tooltip: Delete
+
   lib:
     edit_modal:
       title_edit: Edit virtual author

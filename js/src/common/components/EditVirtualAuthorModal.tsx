@@ -1,25 +1,25 @@
 import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
-import Modal from 'flarum/common/components/Modal';
+import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
 import ItemList from 'flarum/common/utils/ItemList';
-import type VirtualAuthor from '../../common/VirtualAuthor';
 
-interface IEditModalAttrs {
+import type VirtualAuthor from '../../common/VirtualAuthor';
+import type Mithril from 'mithril';
+
+interface IEditModalAttrs extends IInternalModalAttrs {
   virtualAuthor: VirtualAuthor;
   type: 'edit' | 'new';
   onhide: () => void;
 }
 
-export default class EditVirtualAuthorModal extends Modal {
-  attrs!: IEditModalAttrs;
-
+export default class EditVirtualAuthorModal extends Modal<IEditModalAttrs> {
   modelState!: {
     displayName: string;
     description: string;
   };
 
-  oninit(vnode) {
+  oninit(vnode: Mithril.Vnode<IEditModalAttrs, this>) {
     super.oninit(vnode);
 
     const virtualAuthor = this.attrs.virtualAuthor;
@@ -92,11 +92,10 @@ export default class EditVirtualAuthorModal extends Modal {
     m.redraw();
 
     try {
-      const result = await this.attrs.virtualAuthor.save(this.modelState);
-      app.store.pushPayload(result);
+      await this.attrs.virtualAuthor.save(this.modelState);
       this.attrs.onhide();
       this.hide();
-    } catch (e) {
+    } catch (e: any) {
       this.onerror(e);
       console.error(e);
     }

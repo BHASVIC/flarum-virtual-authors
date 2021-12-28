@@ -1,11 +1,11 @@
 {
     "name": "davwheat/virtual-authors",
-    "description": "Specify virtual authors for your discussions.",
+    "description": "Specify virtual authors for discussions on your forum, with credits for each.",
     "keywords": [
         "flarum"
     ],
     "type": "flarum-extension",
-    "license": "MIT",
+    "license": "Proprietary",
     "require": {
         "flarum/core": "^1.1.0"
     },

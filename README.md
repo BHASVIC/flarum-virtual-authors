@@ -18,15 +18,15 @@ This is useful for a Flarum instance which posts stories created by users, or ar
 
 You can create and edit Virtual Authors on Flarum admin dashboard:
 
-![](docs/admin-create.gif)
+![](https://u.davwheat.dev/FAYpCmDm.gif)
 
 These virtual authors can then be assigned to discussions through the controls dropdown:
 
-![](docs/set-va.gif)
+![](https://u.davwheat.dev/JFZITMtv.gif)
 
 From the panel at the top of discussions with Virtual Authors set, you can view all discussion which a specific author has contributed to. This page also contains a discussion count, and the Virtual Author's description:
 
-![](docs/view-va-discussions.gif)
+![](https://u.davwheat.dev/WLUnKnZf.gif)
 
 ## Options
 
@@ -42,7 +42,7 @@ This toggles the location of the 'Authors' pane on discussions. This can be set 
 
 This toggles the badge shown on discussions with virtual authors.
 
-![](docs/badges.png)
+![](https://u.davwheat.dev/euHOkRRv.png)
 
 ## Future development
 

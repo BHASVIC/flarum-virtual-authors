@@ -49,7 +49,7 @@ return [
     (new Extend\Model(Discussion::class))
         ->relationship('virtualAuthors', function (AbstractModel $model) {
             return $model->belongsToMany(VirtualAuthor::class, 'discussion_virtual_author', 'discussion_id', 'virtual_author_id')
-                ->withPivot(['credit'])->withTimestamps();
+                ->withPivot(['credit'])->withTimestamps()->withCount('discussions');
         }),
 
     (new Extend\ApiSerializer(\Flarum\Api\Serializer\DiscussionSerializer::class))

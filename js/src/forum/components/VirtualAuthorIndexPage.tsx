@@ -34,11 +34,7 @@ export default class VirtualAuthorIndexPage extends Page {
 
     // Directly use ID from URL instead of relying on model
     // Store will not be propagated on inital page load
-    this.listState = new VirtualAuthorDiscussionListState(
-      1,
-      this.attrs.slug,
-      app.preloadedApiDocument<Discussion[]>()
-    );
+    this.listState = new VirtualAuthorDiscussionListState(1, this.attrs.slug, app.preloadedApiDocument<Discussion[]>());
 
     // If the user is returning from a discussion page, then take note of which
     // discussion they have just visited. After the view is rendered, we will

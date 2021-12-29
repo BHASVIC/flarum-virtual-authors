@@ -1,10 +1,12 @@
+[![](https://extiverse.com/extension/davwheat/virtual-authors/card.png)](https://extiverse.com/extension/davwheat/virtual-authors)
+
 # davwheat Virtual Authors
 
-[![](https://flarum-badge-api.davwheat.dev/v1/compat-latest/davwheat/virtual-authors)](https://extiverse.com/extension/davwheat/virtual-authors)
+![](https://flarum-badge-api.davwheat.dev/v1/compat-latest/davwheat/virtual-authors)
 
 This is a premium extension, which [you can subscribe to on Extiverse](https://extiverse.com/extension/davwheat/virtual-authors). All plans come with a 14 day free trial so you can see if the extension is a match for you and your forum. Cancel within this period with no questions asked.
 
-If you wish to purchase a lifetime license, please get in touch: [david+extiverse@davwheat.dev](mailto:david+extiverse@davwheat.dev).
+If you wish to purchase a lifetime license, please get in touch: david+extiverse@davwheat.dev.
 
 This extension is also compatible with `v17development/flarum-blog`, with some caveats. See the "Integrations" section for info.
 
@@ -71,7 +73,7 @@ This can be done by adding this to your `composer.json`:
 
 If desired, there is an opportunity to allow this extension to also provide the ability to set virtual authors for individual posts instead of discussions.
 
-I don't require this feature for my use case, but if you'd like to sponsor its development, feel free to get in touch: [david+flarum-dev@davwheat.dev](mailto:david+flarum-dev@davwheat.dev).
+I don't require this feature for my use case, but if you'd like to sponsor its development, feel free to get in touch: david+flarum-dev@davwheat.dev.
 
 ## Links
 

@@ -9,6 +9,11 @@
     "require": {
         "flarum/core": "^1.1.0"
     },
+    "support": {
+        "forum": "https://discuss.flarum.org/d/29753",
+        "email": "david+extiverse@davwheat.dev"
+    },
+    "homepage": "https://extiverse.com/extension/davwheat/virtual-authors",
     "authors": [
         {
             "name": "David Wheatley",

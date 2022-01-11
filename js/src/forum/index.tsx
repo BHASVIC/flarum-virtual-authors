@@ -92,7 +92,8 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
         'virtualAuthorList',
         <LinkButton icon="far fa-address-card" href={app.route('virtualAuthors.list')}>
           {app.translator.trans('davwheat-virtual-authors.forum.virtual_authors_list.sidebar_link')}
-        </LinkButton>, 50
+        </LinkButton>,
+        50
       );
     }
   });

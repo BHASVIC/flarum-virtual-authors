@@ -1,6 +1,5 @@
 import DiscussionListState from 'flarum/forum/states/DiscussionListState';
-
-import type Discussion from 'flarum/common/models/Discussion';
+import Discussion from 'flarum/common/models/Discussion';
 
 export default class VirtualAuthorDiscussionListState extends DiscussionListState {
   private preloadedApiDocument: null | Discussion[];
@@ -10,7 +9,7 @@ export default class VirtualAuthorDiscussionListState extends DiscussionListStat
     super({}, page);
 
     this.virtualAuthorId = virtualAuthorId;
-    this.preloadedApiDocument = preloadedApiDocument;
+    this.preloadedApiDocument = preloadedApiDocument?.filter((d) => d instanceof Discussion) || null;
 
     this.initialLoading = true;
   }

@@ -47,6 +47,10 @@ class AuthorPage extends Index
 
         $document = parent::__invoke($document, $request);
 
+        // Ensure VA model is loaded when 
+        $va = json_decode($this->api->withParentRequest($request)->get('/virtualAuthors/' . $id)->getBody())->data;
+        $document->payload['apiDocument']->data[] = $va;
+
         $document->title = $this->translator->trans('davwheat-virtual-authors.forum.virtual_author_page.meta_title', [
             'displayName' => $virtualAuthor->display_name
         ]);

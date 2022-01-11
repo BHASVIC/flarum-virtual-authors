@@ -7,7 +7,7 @@ import listItems from 'flarum/common/helpers/listItems';
 import ItemList from 'flarum/common/utils/ItemList';
 import icon from 'flarum/common/helpers/icon';
 import DiscussionListState from 'flarum/forum/states/DiscussionListState';
-import Page from 'flarum/common/components/Page';
+import Page, { IPageAttrs } from 'flarum/common/components/Page';
 import DiscussionPage from 'flarum/forum/components/DiscussionPage';
 import Discussion from 'flarum/common/models/Discussion';
 import Button from 'flarum/common/components/Button';
@@ -18,7 +18,11 @@ import type VirtualAuthor from '../../common/VirtualAuthor';
 import type Mithril from 'mithril';
 import VirtualAuthorDiscussionListState from '../states/VirtualAuthorDiscussionListState';
 
-export default class VirtualAuthorIndexPage extends Page {
+interface IAttrs extends IPageAttrs {
+  slug: string;
+}
+
+export default class VirtualAuthorIndexPage extends Page<IAttrs> {
   protected listState!: DiscussionListState;
 
   protected lastDiscussion!: Discussion | undefined;
@@ -26,7 +30,7 @@ export default class VirtualAuthorIndexPage extends Page {
   protected scrollTopOnCreate!: boolean;
 
   get virtualAuthor(): VirtualAuthor {
-    return app.store.getById('virtualAuthors', this.attrs.slug);
+    return app.store.getById('virtualAuthors', this.attrs.slug)!;
   }
 
   oninit(vnode) {
@@ -53,7 +57,7 @@ export default class VirtualAuthorIndexPage extends Page {
 
     this.listState.refreshParams(app.search.params(), m.route.param('page'));
 
-    app.history.push('index', app.translator.trans('core.forum.header.back_to_index_tooltip'));
+    app.history.push('index', extractText(app.translator.trans('core.forum.header.back_to_index_tooltip')));
 
     this.bodyClass = 'App--index';
     this.scrollTopOnCreate = false;
@@ -67,9 +71,9 @@ export default class VirtualAuthorIndexPage extends Page {
     // Work out the difference between the height of this hero and that of the
     // previous hero. Maintain the same scroll position relative to the bottom
     // of the hero so that the sidebar doesn't jump around.
-    const oldHeroHeight = app.cache.heroHeight;
+    const oldHeroHeight = app.cache.heroHeight as number;
     const heroHeight = (app.cache.heroHeight = this.$('.Hero').outerHeight() || 0);
-    const scrollTop = app.cache.scrollTop;
+    const scrollTop = app.cache.scrollTop as number;
 
     $('#app').css('min-height', $(window).height()! + heroHeight);
 
@@ -92,7 +96,7 @@ export default class VirtualAuthorIndexPage extends Page {
 
       if ($discussion.length) {
         const indexTop = $('#header').outerHeight()!;
-        const indexBottom = $(window).height();
+        const indexBottom = $(window).height()!;
         const discussionTop = $discussion.offset()!.top;
         const discussionBottom = discussionTop + $discussion.outerHeight()!;
 

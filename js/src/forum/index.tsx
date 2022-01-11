@@ -8,6 +8,7 @@ import type Discussion from 'flarum/common/models/Discussion';
 import Button from 'flarum/common/components/Button';
 import DiscussionControls from 'flarum/forum/utils/DiscussionControls';
 import DiscussionPage from 'flarum/forum/components/DiscussionPage';
+import IndexPage from 'flarum/forum/components/IndexPage';
 
 import addModel from '../common/addModel';
 import addDiscussionBadge from '../common/addDiscussionBadge';
@@ -15,9 +16,17 @@ import SetVirtualAuthorsModal from '../common/components/SetVirtualAuthorsModal'
 
 import VirtualAuthorPanel from './components/VirtualAuthorPanel';
 import VirtualAuthorIndexPage from './components/VirtualAuthorIndexPage';
+import VirtualAuthorsList from './pages/VirtualAuthorsList';
 
 import BlogOverviewController from 'flarum/v17development/blog/components/BlogPostController';
 import BlogItem from 'flarum/v17development/blog/pages/BlogItem';
+
+import type Mithril from 'mithril';
+import VirtualAuthorPanelItem from './components/VirtualAuthorPanelItem';
+import VirtualAuthorsListItem from './components/VirtualAuthorsListItem';
+import VirtualAuthorsListState from './states/VirtualAuthorsListState';
+import VirtualAuthorDiscussionListState from './states/VirtualAuthorDiscussionListState';
+import LinkButton from 'flarum/common/components/LinkButton';
 
 app.initializers.add('davwheat/manual-blog-authors', () => {
   addModel();
@@ -34,7 +43,12 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
     },
   };
 
-  extend(DiscussionControls, 'moderationControls', function (items: ItemList, discussion: Discussion) {
+  app.routes['virtualAuthors.list'] = {
+    path: '/authors',
+    component: VirtualAuthorsList,
+  };
+
+  extend(DiscussionControls, 'moderationControls', function (items: ItemList<Mithril.Children>, discussion: Discussion) {
     if (!discussion.canSetVirtualAuthors()) return;
 
     items.add(
@@ -52,9 +66,9 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
     );
   });
 
-  extend(DiscussionPage.prototype, 'pageContent', function (this: DiscussionPage, items: ItemList) {
+  extend(DiscussionPage.prototype, 'pageContent', function (this: DiscussionPage, items: ItemList<Mithril.Children>) {
     if (app.forum.attribute('davwheat-virtual-authors.authors-in-sidebar')) return;
-    if (!this.discussion.virtualAuthors().length) return;
+    if (!this.discussion?.virtualAuthors().length) return;
 
     items.add(
       'virtualAuthors',
@@ -65,16 +79,27 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
     );
   });
 
-  extend(DiscussionPage.prototype, 'sidebarItems', function (this: DiscussionPage, items: ItemList) {
+  extend(DiscussionPage.prototype, 'sidebarItems', function (this: DiscussionPage, items: ItemList<Mithril.Children>) {
     if (!app.forum.attribute('davwheat-virtual-authors.authors-in-sidebar')) return;
-    if (!this.discussion.virtualAuthors().length) return;
+    if (!this.discussion?.virtualAuthors().length) return;
 
     items.add('virtualAuthors', <VirtualAuthorPanel isSidebar discussion={this.discussion} />, 125);
   });
 
+  extend(IndexPage.prototype, 'navItems', (items) => {
+    if (app.forum.attribute('canViewVirtualAuthorsPage')) {
+      items.add(
+        'virtualAuthorList',
+        <LinkButton icon="far fa-address-card" href={app.route('virtualAuthors.list')}>
+          {app.translator.trans('davwheat-virtual-authors.forum.virtual_authors_list.sidebar_link')}
+        </LinkButton>, 50
+      );
+    }
+  });
+
   // Blog-specific customisations
   if ('v17development-blog' in flarum.extensions) {
-    extend(BlogOverviewController.prototype, 'manageArticleButtons', function (this: any, items: ItemList) {
+    extend(BlogOverviewController.prototype, 'manageArticleButtons', function (this: any, items: ItemList<Mithril.Children>) {
       if (!this.attrs.article.canSetVirtualAuthors()) return;
 
       items.add(
@@ -92,7 +117,7 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
       );
     });
 
-    extend(BlogItem.prototype, 'postItems', function (this: any, items: ItemList) {
+    extend(BlogItem.prototype, 'postItems', function (this: any, items: ItemList<Mithril.Children>) {
       if (this.loading) return;
 
       if (this.article.virtualAuthors().length) {
@@ -101,3 +126,13 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
     });
   }
 });
+
+export default {
+  'components/VirtualAuthorIndexPage': VirtualAuthorIndexPage,
+  'components/VirtualAuthorPanel': VirtualAuthorPanel,
+  'components/VirtualAuthorPanelItem': VirtualAuthorPanelItem,
+  'components/VirtualAuthorsListItem': VirtualAuthorsListItem,
+  'pages/VirtualAuthorsList': VirtualAuthorsList,
+  'states/VirtualAuthorDiscussionListState': VirtualAuthorDiscussionListState,
+  'states/VirtualAuthorsListState': VirtualAuthorsListState,
+};

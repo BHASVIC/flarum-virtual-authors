@@ -1,6 +1,6 @@
 import app from 'flarum/common/app';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
-import Modal from 'flarum/common/components/Modal';
+import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
 import Tooltip from 'flarum/common/components/Tooltip';
 import withAttr from 'flarum/common/utils/withAttr';
 import { truncate } from 'flarum/common/utils/string';
@@ -10,18 +10,16 @@ import type VirtualAuthor from '../../common/VirtualAuthor';
 import type Mithril from 'mithril';
 import Button from 'flarum/common/components/Button';
 
-interface ISetModalAttrs {
+interface ISetModalAttrs extends IInternalModalAttrs {
   discussion: Discussion & { virtualAuthors(): VirtualAuthor[] };
 }
 
 interface ISelectedVirtualAuthorState {
-  id: string;
-  credit: string;
+  id: string | undefined;
+  credit: string | undefined;
 }
 
-export default class SetVirtualAuthorsModal extends Modal {
-  attrs!: ISetModalAttrs;
-
+export default class SetVirtualAuthorsModal extends Modal<ISetModalAttrs> {
   virtualAuthors: VirtualAuthor[] | null = null;
 
   selectedVirtualAuthors: ISelectedVirtualAuthorState[] = [];
@@ -31,7 +29,10 @@ export default class SetVirtualAuthorsModal extends Modal {
   timeoutKey: number | null = null;
 
   async filterVirtualAuthors() {
-    this.virtualAuthors = await app.store.find('virtualAuthors', { filter: { displayName: this.filterString }, sort: 'displayName' });
+    this.virtualAuthors = await app.store.find<VirtualAuthor[]>('virtualAuthors', {
+      filter: { displayName: this.filterString },
+      sort: 'displayName',
+    });
     m.redraw();
   }
 
@@ -142,7 +143,7 @@ export default class SetVirtualAuthorsModal extends Modal {
   }
 
   selectedVirtualAuthorItem(va: ISelectedVirtualAuthorState): Mithril.Children {
-    const virtualAuthor: VirtualAuthor = app.store.getById('virtualAuthors', va.id);
+    const virtualAuthor: VirtualAuthor = app.store.getById('virtualAuthors', va.id!)!;
 
     return (
       <div className="SelectedVirtualAuthorListItem" key={va.id}>
@@ -168,7 +169,7 @@ export default class SetVirtualAuthorsModal extends Modal {
     m.redraw();
 
     try {
-      this.virtualAuthors = await app.store.find('virtualAuthors');
+      this.virtualAuthors = await app.store.find<VirtualAuthor[]>('virtualAuthors');
       m.redraw();
     } catch (e) {
       this.onerror(e);
@@ -193,13 +194,12 @@ export default class SetVirtualAuthorsModal extends Modal {
         return acc;
       }, {} as Record<string, string>),
       relationships: {
-        virtualAuthors: this.selectedVirtualAuthors.map((va) => app.store.getById('virtualAuthors', va.id)) || [],
+        virtualAuthors: this.selectedVirtualAuthors.map((va) => app.store.getById('virtualAuthors', va.id!)!) || [],
       },
     };
 
     try {
-      const result = await this.attrs.discussion.save(attributes);
-      app.store.pushPayload(result);
+      await this.attrs.discussion.save(attributes);
       this.hide();
     } catch (e) {
       this.onerror(e);

@@ -26,7 +26,8 @@ return [
         ->js(__DIR__ . '/js/dist/forum.js')
         ->css(__DIR__ . '/less/forum/forum.less')
         ->css(__DIR__ . '/less/common.less')
-        ->route('/author/{slug}', 'virtualAuthors.author', Content\AuthorPage::class),
+        ->route('/author/{slug}', 'virtualAuthors.author', Content\AuthorPage::class)
+        ->route('/authors', 'virtualAuthors.list', Content\AuthorsList::class),
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__ . '/js/dist/admin.js')
@@ -54,9 +55,12 @@ return [
 
     (new Extend\ApiSerializer(\Flarum\Api\Serializer\DiscussionSerializer::class))
         ->hasMany('virtualAuthors', VirtualAuthorSerializer::class)
-        ->attribute('canSetVirtualAuthors', function (\Flarum\Api\Serializer\DiscussionSerializer $serializer, Discussion $discussion) {
+        ->attribute('canSetVirtualAuthors', function (\Flarum\Api\Serializer\DiscussionSerializer $serializer, Discussion $discussion, array $attributes) {
             return $serializer->getActor()->can('setVirtualAuthors', $discussion);
         }),
+
+    (new Extend\ApiSerializer(\Flarum\Api\Serializer\ForumSerializer::class))
+        ->attributes(ForumAttributes::class),
 
     (new Extend\ApiController(\Flarum\Api\Controller\ShowDiscussionController::class))
         ->addInclude('virtualAuthors')

@@ -26,6 +26,12 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
       type: 'switch',
       label: app.translator.trans('davwheat-virtual-authors.admin.settings.discussion_badge'),
     })
+    .registerSetting({
+      setting: 'davwheat-virtual-authors.virtual-authors-page-disabled',
+      type: 'switch',
+      label: app.translator.trans('davwheat-virtual-authors.admin.settings.virtual_authors_page_disabled'),
+      help: app.translator.trans('davwheat-virtual-authors.admin.settings.virtual_authors_page_disabled_help'),
+    })
     .registerPage(SettingsPage)
     .registerPermission(
       {
@@ -36,5 +42,13 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
       },
       'moderate',
       94
+    )
+    .registerPermission(
+      {
+        icon: 'far fa-address-card',
+        label: app.translator.trans('davwheat-virtual-authors.admin.permissions.view_virtual_authors_page'),
+        permission: 'viewVirtualAuthorsPage',
+      },
+      'view'
     );
 });

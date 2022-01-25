@@ -128,12 +128,8 @@ app.initializers.add('davwheat/manual-blog-authors', () => {
   }
 });
 
-export default {
-  'components/VirtualAuthorIndexPage': VirtualAuthorIndexPage,
-  'components/VirtualAuthorPanel': VirtualAuthorPanel,
-  'components/VirtualAuthorPanelItem': VirtualAuthorPanelItem,
-  'components/VirtualAuthorsListItem': VirtualAuthorsListItem,
-  'pages/VirtualAuthorsList': VirtualAuthorsList,
-  'states/VirtualAuthorDiscussionListState': VirtualAuthorDiscussionListState,
-  'states/VirtualAuthorsListState': VirtualAuthorsListState,
-};
+const components = { VirtualAuthorIndexPage, VirtualAuthorPanel, VirtualAuthorPanelItem, VirtualAuthorsListItem };
+const pages = { VirtualAuthorsList };
+const states = { VirtualAuthorsListState, VirtualAuthorDiscussionListState };
+
+export { components, pages, states };

@@ -9,7 +9,6 @@ import classList from 'flarum/common/utils/classList';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import ItemList from 'flarum/common/utils/ItemList';
 import Stream from 'flarum/common/utils/Stream';
-import { debounce } from 'flarum/common/utils/throttleDebounce';
 import withAttr from 'flarum/common/utils/withAttr';
 
 import type Mithril from 'mithril';

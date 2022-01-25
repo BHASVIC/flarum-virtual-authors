@@ -7,7 +7,7 @@
     "type": "flarum-extension",
     "license": "Proprietary",
     "require": {
-        "flarum/core": "^1.1.0"
+        "flarum/core": "^1.2.0"
     },
     "support": {
         "forum": "https://discuss.flarum.org/d/29753",
@@ -38,7 +38,6 @@
         }
     },
     "require-dev": {
-        "symfony/var-dumper": "^v6.0.1",
-        "flarum/core": "@dev"
+        "symfony/var-dumper": "^6.0.2"
     }
 }

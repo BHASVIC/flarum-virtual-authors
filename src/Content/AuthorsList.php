@@ -4,7 +4,6 @@ namespace Davwheat\VirtualAuthors\Content;
 
 use Davwheat\VirtualAuthors\VirtualAuthorRepository;
 use Flarum\Api\Client;
-use Flarum\Forum\Content\Index;
 use Flarum\Frontend\Document;
 use Flarum\Http\Exception\RouteNotFoundException;
 use Flarum\Http\UrlGenerator;

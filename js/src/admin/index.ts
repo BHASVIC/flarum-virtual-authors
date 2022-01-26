@@ -4,7 +4,7 @@ import addModel from '../common/addModel';
 import addDiscussionBadge from '../common/addDiscussionBadge';
 import SettingsPage from './pages/SettingsPage';
 
-app.initializers.add('davwheat/manual-blog-authors', () => {
+app.initializers.add('davwheat/virtual-authors', () => {
   addModel();
   addDiscussionBadge();
 

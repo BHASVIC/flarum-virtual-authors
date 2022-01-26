@@ -28,7 +28,7 @@ import VirtualAuthorsListState from './states/VirtualAuthorsListState';
 import VirtualAuthorDiscussionListState from './states/VirtualAuthorDiscussionListState';
 import LinkButton from 'flarum/common/components/LinkButton';
 
-app.initializers.add('davwheat/manual-blog-authors', () => {
+app.initializers.add('davwheat/virtual-authors', () => {
   addModel();
   addDiscussionBadge();
 

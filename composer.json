@@ -34,7 +34,10 @@
                 "name": "fas fa-ghost",
                 "backgroundColor": "#51c5dd",
                 "color": "#000"
-            }
+            },
+            "optional-dependencies": [
+                "v17development/flarum-blog"
+            ]
         }
     },
     "require-dev": {

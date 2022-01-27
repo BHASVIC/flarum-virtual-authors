@@ -22,7 +22,7 @@ export default class VirtualAuthorsListState<P extends VirtualAuthorsListParams 
   requestParams(): PaginatedListRequestParams {
     const params = {
       filter: this.params.filter || {},
-      sort: this.sortMap()[this.params.sort ?? ''],
+      sort: this.sortMap()[this.params.sort ?? ''] || 'displayName',
     };
 
     if (this.params.q) {

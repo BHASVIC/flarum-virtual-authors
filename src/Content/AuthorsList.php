@@ -69,7 +69,8 @@ class AuthorsList
 
         $params = [
             'filter' => $filters,
-            'page' => ['offset' => ($page - 1) * 20, 'limit' => 20]
+            'page' => ['offset' => ($page - 1) * 20, 'limit' => 20],
+            'sort' => 'displayName'
         ];
 
         $apiDocument = $this->getApiDocument($request, $params);

@@ -73,16 +73,16 @@ export default class VirtualAuthorsList extends Page<IAttrs> {
       );
     }
 
-    if (state.isEmpty()) {
-      return <Placeholder text={app.translator.trans('davwheat-virtual-authors.forum.virtual_authors_list.empty_text')} />;
-    }
-
     if (this.paginationState.getParams()?.filter?.displayName !== this.nameFilter()) {
       if (this.nameFilter().length < 3 && this.paginationState.getParams()?.filter?.displayName !== undefined) {
         this.paginationState.refreshParams({ filter: {} }, 1);
       } else {
         this.paginationState.refreshParams({ filter: { displayName: this.nameFilter() } }, 1);
       }
+    }
+
+    if (state.isEmpty()) {
+      return <Placeholder text={app.translator.trans('davwheat-virtual-authors.forum.virtual_authors_list.empty_text')} />;
     }
 
     return (

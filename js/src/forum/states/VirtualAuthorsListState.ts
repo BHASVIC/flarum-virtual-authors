@@ -3,6 +3,9 @@ import PaginatedListState, { PaginatedListParams, PaginatedListRequestParams } f
 import type { ApiResponsePlural } from 'flarum/common/Store';
 import type VirtualAuthor from '../../common/VirtualAuthor';
 
+// Must also be edited in `AuthorsList.php`
+const PAGE_SIZE = 20;
+
 export interface VirtualAuthorsListParams extends PaginatedListParams {
   sort?: string;
 }
@@ -12,7 +15,7 @@ export default class VirtualAuthorsListState<P extends VirtualAuthorsListParams 
   P
 > {
   constructor(params: P, page: number = 1) {
-    super(params, page, 20);
+    super(params, page, PAGE_SIZE);
   }
 
   get type(): string {
@@ -28,6 +31,9 @@ export default class VirtualAuthorsListState<P extends VirtualAuthorsListParams 
     if (this.params.q) {
       params.filter.q = this.params.q;
     }
+
+    params.page ||= {};
+    params.page.limit = PAGE_SIZE;
 
     return params;
   }

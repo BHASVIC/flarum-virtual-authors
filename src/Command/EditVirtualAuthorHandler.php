@@ -59,6 +59,8 @@ class EditVirtualAuthorHandler
 
         $this->validator->assertValid($model->getAttributes());
 
-        return $model->setUpdatedAt(Carbon::now())->save();
+        $model->setUpdatedAt(Carbon::now())->saveOrFail();
+
+        return $model;
     }
 }

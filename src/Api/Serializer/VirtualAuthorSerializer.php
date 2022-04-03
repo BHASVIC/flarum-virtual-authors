@@ -33,6 +33,8 @@ class VirtualAuthorSerializer extends AbstractSerializer
             'discussionCount' => $model->discussions_count,
         ];
 
+        // If the model's pivot data is loaded, include it in the response
+        // to the frontend too
         if ($model->pivot) {
             $attributes['credit'] = $model->pivot->credit;
         }

@@ -43,7 +43,7 @@ return [
                     ->onDelete('cascade');
 
                 // create composite index of discussion and VA ids
-                $table->index(['discussion_id', 'virtual_author_id']);
+                $table->index(['discussion_id', 'virtual_author_id'], 'discussion_virtual_author_index');
             }
         );
     },

@@ -11,6 +11,7 @@ class VirtualAuthorValidator extends AbstractValidator
      */
     protected $rules = [
         'displayName' => ['min:3', 'max:255', 'required'],
-        'description' => ['max:65534']
+        'description' => ['max:65534'],
+        'credit' => ['max:255']
     ];
 }

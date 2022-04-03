@@ -8,9 +8,9 @@ use Flarum\User\User;
 class CreatingVirtualAuthor
 {
     /**
-     * @var Tag
+     * @var VirtualAuthor
      */
-    public $tag;
+    public $virtualAuthor;
 
     /**
      * @var User

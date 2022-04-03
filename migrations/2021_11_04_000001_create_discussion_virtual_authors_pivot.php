@@ -16,6 +16,8 @@ return [
                 // auto-incrementing primary key
                 $table->increments('id');
 
+                // add id columns for other tables to convert into foreign
+                // keys later
                 $table->integer('discussion_id')->unsigned();
                 $table->integer('virtual_author_id')->unsigned();
 

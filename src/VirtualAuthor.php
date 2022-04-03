@@ -3,9 +3,7 @@
 namespace Davwheat\VirtualAuthors;
 
 use Flarum\Database\AbstractModel;
-use Flarum\Database\ScopeVisibilityTrait;
 use Flarum\Discussion\Discussion;
-use Flarum\Foundation\EventGeneratorTrait;
 
 /**
  * @property string $display_name

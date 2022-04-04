@@ -16,10 +16,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    padding: 8px;
+    border-radius: @border-radius;
 
     &--clickable {
-      padding: 8px;
-      border-radius: @border-radius;
       cursor: pointer;
       text-decoration: none !important;
 
@@ -29,6 +29,10 @@
       &:active {
         background: @body-bg;
       }
+    }
+
+    &:not(.VirtualAuthorPanelItem--clickable) {
+      background: @body-bg;
     }
 
     h3,

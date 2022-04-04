@@ -28,8 +28,7 @@ export default class VirtualAuthorPanelItem extends Component<IAttrs> {
     const link = this.link();
 
     if (!link) {
-      content.attrs.class = this.className();
-      return content;
+      return <span class={this.className()}>{content}</span>;
     }
 
     return (

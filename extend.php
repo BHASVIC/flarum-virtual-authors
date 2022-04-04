@@ -37,7 +37,6 @@ return [
     new Extend\Locales(__DIR__ . '/locale'),
 
     (new Extend\Policy())
-        ->modelPolicy(VirtualAuthor::class, Access\VirtualAuthorPolicy::class)
         ->globalPolicy(Access\GlobalPolicy::class),
 
     (new Extend\Routes('api'))
@@ -46,6 +45,9 @@ return [
         ->post('/virtualAuthors', 'virtualAuthors.create', Api\Controller\CreateVirtualAuthorController::class)
         ->patch('/virtualAuthors/{id}', 'virtualAuthors.update', Api\Controller\UpdateVirtualAuthorController::class)
         ->delete('/virtualAuthors/{id}', 'virtualAuthors.delete', Api\Controller\DeleteVirtualAuthorController::class),
+
+    (new Extend\ApiSerializer(\Flarum\Api\Serializer\ForumSerializer::class))
+        ->attributes(ForumAttributes::class),
 
     (new Extend\Model(Discussion::class))
         ->relationship('virtualAuthors', function (AbstractModel $model) {
@@ -58,9 +60,6 @@ return [
         ->attribute('canSetVirtualAuthors', function (\Flarum\Api\Serializer\DiscussionSerializer $serializer, Discussion $discussion, array $attributes) {
             return $serializer->getActor()->can('setVirtualAuthors', $discussion);
         }),
-
-    (new Extend\ApiSerializer(\Flarum\Api\Serializer\ForumSerializer::class))
-        ->attributes(ForumAttributes::class),
 
     (new Extend\ApiController(\Flarum\Api\Controller\ShowDiscussionController::class))
         ->addInclude('virtualAuthors')

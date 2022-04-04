@@ -34,6 +34,10 @@ export default class EditVirtualAuthorModal extends Modal<IEditModalAttrs> {
     return app.translator.trans(`davwheat-virtual-authors.lib.edit_modal.title_${this.attrs.type}`);
   }
 
+  className(): string {
+    return 'EditVirtualAuthorModal';
+  }
+
   content() {
     return <div class="Modal-body">{this.fields().toArray()}</div>;
   }

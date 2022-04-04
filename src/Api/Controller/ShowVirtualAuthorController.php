@@ -36,15 +36,6 @@ class ShowVirtualAuthorController extends AbstractShowController
         $actor = RequestUtil::getActor($request);
         $modelId = Arr::get($request->getQueryParams(), 'id');
 
-        /**
-         * @var ?\Davwheat\VirtualAuthors\VirtualAuthor
-         */
-        $model = $this->repository->find($modelId, $actor);
-
-        if ($model === null) {
-            throw new ModelNotFoundException();
-        }
-
-        return $model;
+        return $this->repository->findOrFail($modelId, $actor);
     }
 }

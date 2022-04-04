@@ -128,6 +128,8 @@ app.initializers.add('davwheat/virtual-authors', () => {
   }
 });
 
+// Export our JS so that other extension can modify it if desired.
+
 const components = { VirtualAuthorIndexPage, VirtualAuthorPanel, VirtualAuthorPanelItem, VirtualAuthorsListItem };
 const pages = { VirtualAuthorsList };
 const states = { VirtualAuthorsListState, VirtualAuthorDiscussionListState };

@@ -77,6 +77,10 @@ export default class VirtualAuthorIndexPage extends Page<IAttrs> {
 
     $('#app').css('min-height', $(window).height()! + heroHeight);
 
+    // Ensure that routeName is set to the current route. This is necessary for
+    // sorting to function.
+    app.current.set('routeName', 'virtualAuthors.author');
+
     // Let browser handle scrolling on page reload.
     if (app.previous.type === null) return;
 

@@ -27,6 +27,7 @@ import VirtualAuthorsListItem from './components/VirtualAuthorsListItem';
 import VirtualAuthorsListState from './states/VirtualAuthorsListState';
 import VirtualAuthorDiscussionListState from './states/VirtualAuthorDiscussionListState';
 import LinkButton from 'flarum/common/components/LinkButton';
+import GlobalSearchState from 'flarum/forum/states/GlobalSearchState';
 
 app.initializers.add('davwheat/virtual-authors', () => {
   addModel();
@@ -95,6 +96,12 @@ app.initializers.add('davwheat/virtual-authors', () => {
         </LinkButton>,
         50
       );
+    }
+  });
+
+  extend(GlobalSearchState.prototype, 'stickyParams', function (params) {
+    if (app.current.get('routeName') === 'virtualAuthors.author') {
+      params.slug = m.route.param('slug');
     }
   });
 

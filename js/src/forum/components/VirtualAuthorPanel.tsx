@@ -29,7 +29,8 @@ export default class VirtualAuthorPanel extends Component<IAttrs> {
         )}
 
         <ul class="VirtualAuthorPanel-List">
-          {virtualAuthors && virtualAuthors.map((virtualAuthor: VirtualAuthor) => <VirtualAuthorPanelItem virtualAuthor={virtualAuthor} />)}
+          {virtualAuthors &&
+            virtualAuthors.map((virtualAuthor: VirtualAuthor) => <VirtualAuthorPanelItem key={virtualAuthor.id()} virtualAuthor={virtualAuthor} />)}
         </ul>
       </aside>
     );

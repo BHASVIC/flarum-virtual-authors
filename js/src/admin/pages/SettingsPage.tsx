@@ -11,18 +11,40 @@ import VirtualAuthorItem from '../components/VirtualAuthorItem';
 import extractText from 'flarum/common/utils/extractText';
 
 export default class SettingsPage extends ExtensionPage {
+  /**
+   * Array of virtual authors to display.
+   */
   virtualAuthors: VirtualAuthor[] | null = null;
+  /**
+   * Whether the list of authors is currently loading.
+   */
   loading: boolean = true;
+  /**
+   * Whether the list of authors has encountered an error.
+   */
   errored: boolean = false;
 
+  /**
+   * Chosen sort order.
+   */
   sort: 'id' | 'displayName' = 'id';
+  /**
+   * Filtering by display name.
+   */
   search: string = '';
+  /**
+   * Pagination state for the list.
+   */
   pageState = {
     pageNumber: 1,
     isNextPage: false,
     isPrevPage: false,
   };
 
+  /**
+   * Timeout key used to wait momentarily after finishing
+   * typing before making an API request.
+   */
   updateSearchTimeout: number | null = null;
 
   content(vnode) {
@@ -62,9 +84,11 @@ export default class SettingsPage extends ExtensionPage {
               oninput={withAttr('value', (val: string) => {
                 this.search = val;
 
+                // Sort by display name if we're filtering by display name.
                 if (this.search) this.sort = 'displayName';
                 else this.sort = 'id';
 
+                // Debounce typing - wait for 400ms after stopping before searching
                 if (this.updateSearchTimeout) clearTimeout(this.updateSearchTimeout);
                 this.updateSearchTimeout = setTimeout(() => this.loadAllVirtualAuthors(), 400);
               })}
@@ -99,8 +123,11 @@ export default class SettingsPage extends ExtensionPage {
             placeholder={extractText(app.translator.trans('davwheat-virtual-authors.admin.settings.search_placeholder'))}
             oninput={withAttr('value', (val: string) => {
               this.search = val;
+
+              // Reset to page 1
               this.pageState.pageNumber = 1;
 
+              // Sort by display name if we're filtering by display name.
               if (this.updateSearchTimeout) clearTimeout(this.updateSearchTimeout);
               this.updateSearchTimeout = setTimeout(() => this.loadAllVirtualAuthors(), 400);
             })}
@@ -109,7 +136,8 @@ export default class SettingsPage extends ExtensionPage {
 
           <div className="VirtualAuthors">
             {this.virtualAuthors.map((virtualAuthor) => (
-              <VirtualAuthorItem virtualAuthor={virtualAuthor} invalidateData={() => this.loadAllVirtualAuthors()} />
+              // Map array of data to VirtualAuthorItem component instances
+              <VirtualAuthorItem key={virtualAuthor.id()} virtualAuthor={virtualAuthor} invalidateData={() => this.loadAllVirtualAuthors()} />
             ))}
           </div>
 
@@ -118,6 +146,7 @@ export default class SettingsPage extends ExtensionPage {
               <Button
                 class="Button prevPage"
                 onclick={() => {
+                  // Reduce page number and reload
                   this.pageState.pageNumber--;
                   this.loadAllVirtualAuthors();
                 }}
@@ -129,6 +158,7 @@ export default class SettingsPage extends ExtensionPage {
               <Button
                 class="Button nextPage"
                 onclick={() => {
+                  // Increase page number and reload
                   this.pageState.pageNumber++;
                   this.loadAllVirtualAuthors();
                 }}

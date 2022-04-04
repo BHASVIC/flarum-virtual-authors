@@ -33,7 +33,7 @@ export default class VirtualAuthorIndexPage extends Page<IAttrs> {
     return app.store.getById('virtualAuthors', this.attrs.slug)!;
   }
 
-  oninit(vnode) {
+  oninit(vnode: Mithril.Vnode) {
     super.oninit(vnode);
 
     // Directly use ID from URL instead of relying on model
@@ -63,7 +63,7 @@ export default class VirtualAuthorIndexPage extends Page<IAttrs> {
     this.scrollTopOnCreate = false;
   }
 
-  oncreate(vnode) {
+  oncreate(vnode: Mithril.Vnode) {
     super.oncreate(vnode);
 
     this.setTitle();
@@ -107,7 +107,7 @@ export default class VirtualAuthorIndexPage extends Page<IAttrs> {
     }
   }
 
-  onbeforeremove(vnode) {
+  onbeforeremove(vnode: Mithril.Vnode) {
     super.onbeforeremove(vnode);
 
     // Save the scroll position so we can restore it when we return to the
@@ -115,7 +115,7 @@ export default class VirtualAuthorIndexPage extends Page<IAttrs> {
     app.cache.scrollTop = $(window).scrollTop();
   }
 
-  onremove(vnode) {
+  onremove(vnode: Mithril.Vnode) {
     super.onremove(vnode);
 
     $('#app').css('min-height', '');
@@ -261,7 +261,7 @@ export default class VirtualAuthorIndexPage extends Page<IAttrs> {
         onclick={() => {
           this.listState.refresh();
           if (app.session.user) {
-            app.store.find('users', app.session.user.id());
+            app.store.find('users', app.session.user.id()!.toString());
             m.redraw();
           }
         }}

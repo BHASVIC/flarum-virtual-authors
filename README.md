@@ -1,7 +1,5 @@
 # davwheat Virtual Authors
 
-[![](https://flarum-badge-api.davwheat.dev/v1/compat-latest/davwheat/virtual-authors)](https://extiverse.com/extension/davwheat/virtual-authors)
-
 This is a premium extension, which [you can subscribe to on Extiverse](https://extiverse.com/extension/davwheat/virtual-authors). All plans come with a 14 day free trial so you can see if the extension is a match for you and your forum. Cancel within this period with no questions asked.
 
 If you wish to purchase a lifetime license, please get in touch: [david+extiverse@davwheat.dev](mailto:david+extiverse@davwheat.dev).
@@ -50,22 +48,7 @@ This toggles the badge shown on discussions with virtual authors.
 
 ## Integrations
 
-This extension is compatible with the Flarum Blog extension, by v17-development. However, you **must use the patched version** created by myself for extensibility improvements that this extension requires, provided [my pull request](https://github.com/v17development/flarum-blog/pull/110) has not been merged.
-
-This patched version is a drop-in replacement for Flarum Blog. If you have other extensions which modify Flarum Blog, you may encounter issues, however.
-
-This can be done by adding this to your `composer.json`:
-
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/bhasvic/flarum-blog"
-    }
-  ]
-}
-```
+This extension is compatible with the Flarum Blog extension, by v17-development.
 
 ## Future development
 

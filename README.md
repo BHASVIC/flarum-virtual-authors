@@ -4,7 +4,7 @@ This is a premium extension, which [you can subscribe to on Extiverse](https://e
 
 If you wish to purchase a lifetime license, please get in touch: [david+extiverse@davwheat.dev](mailto:david+extiverse@davwheat.dev).
 
-This extension is also compatible with `v17development/flarum-blog`, with some caveats. See the "Integrations" section for info.
+This extension is also compatible with `v17development/flarum-blog`.
 
 ## Description
 
